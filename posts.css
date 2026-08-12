@@ -317,3 +317,79 @@ article img,
     margin:20px auto !important;
   }
 }
+
+
+/* =========================================================
+   V2.9 POSTS LIST + ARTICLE IMAGE FINAL OVERRIDES
+   The listing thumbnail must stay compact even when the
+   original image is a very long detail-page image.
+   ========================================================= */
+
+/* Post listing cards */
+.posts-grid{
+  align-items:start;
+}
+
+.post-card{
+  overflow:hidden;
+}
+
+.post-card > img{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  height:280px !important;
+  max-height:280px !important;
+  margin:0 !important;
+  object-fit:cover !important;
+  object-position:center !important;
+  border-radius:0 !important;
+  aspect-ratio:auto !important;
+}
+
+/* On the actual article, images remain blog-sized. */
+.post-article .post-featured-image img{
+  width:auto !important;
+  max-width:min(920px, 100%) !important;
+  height:auto !important;
+  max-height:none !important;
+  margin:0 auto !important;
+  object-fit:contain !important;
+}
+
+.post-article .post-body img{
+  width:auto !important;
+  max-width:min(820px, 100%) !important;
+  height:auto !important;
+  max-height:none !important;
+  margin:26px auto !important;
+  object-fit:contain !important;
+}
+
+/* Very tall/detail-page images get a little more width,
+   but never get cropped vertically on the article page. */
+.post-article .post-body img.is-long-image,
+.post-article .post-body img.detail-image{
+  width:auto !important;
+  max-width:min(960px, 100%) !important;
+  height:auto !important;
+  max-height:none !important;
+  object-fit:contain !important;
+}
+
+@media (max-width: 720px){
+  .post-card > img{
+    height:220px !important;
+    max-height:220px !important;
+    object-fit:cover !important;
+  }
+
+  .post-article .post-featured-image img,
+  .post-article .post-body img,
+  .post-article .post-body img.is-long-image,
+  .post-article .post-body img.detail-image{
+    width:100% !important;
+    max-width:100% !important;
+    height:auto !important;
+  }
+}

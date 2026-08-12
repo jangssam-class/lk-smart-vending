@@ -1,0 +1,24 @@
+LK Smart Vending V2.9 - 포스팅 이미지 표시 최종 수정
+
+확인된 실제 원인
+- posts/index.njk와 개별 포스팅은 /posts.css 파일을 불러오고 있었습니다.
+- 하지만 eleventy.config.js에서 posts.css를 _site로 복사하지 않고 있었습니다.
+- 따라서 Netlify 배포 후 /posts.css가 누락되어 포스팅 페이지의 이미지 크기 CSS가 적용되지 않았습니다.
+- 그 결과 원본 상세페이지 이미지가 브라우저 기본 크기에 가깝게 크게 표시됐습니다.
+
+V2.9 수정
+1. posts.css를 Eleventy passthrough copy에 추가
+2. /posts/ 목록의 대표 이미지는 PC 280px 높이 카드 썸네일로 표시
+3. 모바일 목록 썸네일은 220px
+4. 목록에서는 긴 상세페이지 원본도 카드 크기에 맞춰 잘라서 썸네일로 표시
+5. 실제 개별 글에서는 일반 이미지 최대 약 820px
+6. 대표 이미지 최대 약 920px
+7. 긴 상세페이지 이미지는 최대 약 960px + 세로 전체 길이 유지
+8. 업로드 원본 크기/비율 제한은 없음
+9. 기존 CMS / GitHub / Netlify / 이미지 업로드 구조 유지
+
+배포 후 확인
+- https://lk-smart-vending.netlify.app/posts.css
+  위 주소에서 CSS 코드가 보이면 정상입니다.
+- https://lk-smart-vending.netlify.app/posts/
+  목록 이미지가 카드 크기로 보이면 정상입니다.
