@@ -47,9 +47,11 @@
     <p class="post-description">{{ description }}</p>
 
     <div class="post-tags">
+      {% if province %}<span>{{ province }}</span>{% endif %}
+      {% if city %}<span>{{ city }}</span>{% endif %}
+      {% if district %}<span>{{ district }}</span>{% endif %}
       {% if product %}<span>{{ product }}</span>{% endif %}
       {% if place %}<span>{{ place }}</span>{% endif %}
-      {% if content_type %}<span>{{ content_type }}</span>{% endif %}
     </div>
 
     {% if featured_image %}
@@ -61,14 +63,6 @@
     <div class="post-body">
       {{ content | safe }}
     </div>
-
-    {% set related = collections.publishedPosts | sameRegion(province, city, page.url) %}
-    {% if related.length %}
-    <section class="related-posts">
-      <p>RELATED CONTENT</p><h2>같이 보면 좋은 지역 설치 정보</h2>
-      <div class="related-grid">{% for item in related %}<a href="{{ item.url }}"><small>{{ item.data.province }} {{ item.data.city }}</small><strong>{{ item.data.title }}</strong><span>자세히 보기 →</span></a>{% endfor %}</div>
-    </section>
-    {% endif %}
 
     <aside class="post-cta">
       <p>INSTALLATION CONSULTATION</p>

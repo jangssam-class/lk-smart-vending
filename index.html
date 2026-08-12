@@ -149,6 +149,9 @@
 </section>
 
 <section class="section nationwide" id="regions" data-reveal-section><div class="section-title-row"><div><p class="eyebrow">NATIONWIDE INSTALLATION</p><h2>전국 설치 상담</h2><p>지역과 설치 공간을 선택하면 지역별 검색 키워드와 상담 방향을 확인할 수 있습니다.</p></div><a class="case-all-btn" href="https://naver.me/xtNb86DN" target="_blank">전국 설치 상담</a></div><div class="region-finder reveal-up"><div class="region-form"><label>시·도<select id="regionProvince"></select></label><label>시·군·구<select id="regionCity"></select></label><label>설치 공간<select id="regionPlace"><option>오피스</option><option>병원</option><option>헬스장</option><option>학교·학원</option><option>공장</option><option>호텔·숙박</option><option>아파트</option><option>무인매장</option></select></label></div><div class="region-result"><span>지역별 추천 키워드</span><h3 id="regionHeadline"></h3><div class="region-keywords" id="regionKeywords"></div><p id="regionDescription"></p><a class="btn black" href="https://naver.me/xtNb86DN" target="_blank">이 지역 설치 상담하기</a></div></div><div class="province-grid reveal-grid" id="provinceGrid"></div></section>
+<section class="section latest-posts" id="latestPosts" data-reveal-section>
+<div class="section-title-row"><div><p class="eyebrow">LATEST INFORMATION</p><h2>최근 정보 포스팅</h2><p>지역별 자판기 설치·렌탈과 운영 정보를 확인하세요.</p></div><a class="case-all-btn" href="/posts/">전체 포스팅 보기</a></div>
+<div class="latest-post-grid" id="latestPostGrid"><p>포스팅을 불러오는 중입니다.</p></div></section>
 <section class="process section" id="process" data-reveal-section>
   <div class="section-head">
     <p class="eyebrow">PROCESS</p>
@@ -221,6 +224,7 @@
   }
 </script>
 
+<script>fetch('/posts-feed.json').then(r=>r.json()).then(posts=>{const box=document.getElementById('latestPostGrid');if(!box)return;if(!posts.length){box.innerHTML='<div class="latest-empty">CMS에서 첫 글을 발행하면 최근 포스팅이 이곳에 자동으로 표시됩니다.</div>';return;}box.innerHTML=posts.slice(0,6).map(p=>`<a class="latest-post-card" href="${p.url}">${p.image?`<img src="${p.image}" alt="">`:''}<div><small>${[p.province,p.city,p.district].filter(Boolean).join(' ')} · ${p.product}</small><h3>${p.title}</h3><p>${p.description}</p><b>자세히 보기 →</b></div></a>`).join('')}).catch(()=>{const b=document.getElementById('latestPostGrid');if(b)b.innerHTML='<p>포스팅 목록을 준비 중입니다.</p>'});</script>
 <script src="/script.js"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"index.html": "index.html"});
   eleventyConfig.addPassthroughCopy({"style.css": "style.css"});
-  eleventyConfig.addPassthroughCopy({"posts.css": "posts.css"});
   eleventyConfig.addPassthroughCopy({"script.js": "script.js"});
   eleventyConfig.addPassthroughCopy({"images": "images"});
   eleventyConfig.addPassthroughCopy({"marketing.html": "marketing.html"});
@@ -26,8 +25,6 @@ export default function(eleventyConfig) {
       }).format(new Date(value));
     } catch { return ""; }
   });
-  eleventyConfig.addFilter("limit", (arr, n) => Array.isArray(arr) ? arr.slice(0, n) : []);
-  eleventyConfig.addFilter("sameRegion", (arr, province, city, currentUrl) => (arr || []).filter(item => item.url !== currentUrl && (item.data.city === city || item.data.province === province)).slice(0, 4));
   eleventyConfig.addFilter("xmlEscape", value => String(value ?? "")
     .replaceAll("&", "&amp;").replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;").replaceAll('"', "&quot;")

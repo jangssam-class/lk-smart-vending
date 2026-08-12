@@ -22,7 +22,7 @@ collections:
     summary: "{{title}} · {{province}} {{city}}"
     fields:
       - { label: "포스팅 제목", name: "title", widget: "string", hint: "예: 부산 재송동 냉동자판기 설치 렌탈 무인 멀티자판기 운영사례 음료 간식" }
-      - { label: "검색 설명문", name: "description", widget: "text", hint: "검색 결과에서 글 내용을 요약해 보여줄 1~2문장" }
+      - { label: "검색결과 설명문(META)", name: "description", widget: "text", hint: "검색결과용 짧은 요약문입니다. 1,000~1,500자 본문은 아래 본문 영역에 작성하세요." }
       - { label: "발행일", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
       - { label: "수정일", name: "updated", widget: "datetime", required: false, format: "YYYY-MM-DDTHH:mm:ssZ" }
       - { label: "시·도", name: "province", widget: "string", hint: "예: 부산" }
@@ -41,21 +41,6 @@ collections:
         widget: "list"
         required: false
         hint: "본문과 실제로 관련된 키워드만 추가하세요."
-      - label: "콘텐츠 유형"
-        name: "content_type"
-        widget: "select"
-        default: "설치 가이드"
-        options: ["설치 가이드", "운영사례", "렌탈 안내", "비용 체크", "상품 구성", "운영 방법"]
-      - label: "핵심 키워드"
-        name: "primary_keyword"
-        widget: "string"
-        required: false
-        hint: "예: 부산 재송동 냉동자판기 설치"
-      - label: "관련 글 추천용 키워드"
-        name: "related_keywords"
-        widget: "list"
-        required: false
-        hint: "비슷한 지역·제품 글을 연결할 때 사용할 키워드"
       - { label: "대표 이미지", name: "featured_image", widget: "image", required: false }
       - { label: "대표 이미지 설명(ALT)", name: "image_alt", widget: "string", required: false }
       - { label: "본문", name: "body", widget: "markdown" }
