@@ -94,5 +94,43 @@
 </main>
 
 <footer class="post-footer">© LK Smart Vending · 관리자 {{ site.manager }} · {{ site.phone }}</footer>
+
+<script>
+(function () {
+  function optimizePostImages() {
+    var scope = document.querySelector('.post-content, .post-body, article');
+    if (!scope) return;
+
+    scope.querySelectorAll('img').forEach(function (img) {
+      img.loading = img.loading || 'lazy';
+      img.decoding = 'async';
+
+      function classify() {
+        if (!img.naturalWidth || !img.naturalHeight) return;
+        var ratio = img.naturalHeight / img.naturalWidth;
+
+        /* Long product/detail pages are detected automatically.
+           2.2x or taller than width is treated as a long image. */
+        if (ratio >= 2.2) {
+          img.classList.add('is-long-image');
+        }
+
+        /* Preserve the intrinsic ratio in every case. */
+        img.style.height = 'auto';
+      }
+
+      if (img.complete) classify();
+      else img.addEventListener('load', classify, { once: true });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', optimizePostImages);
+  } else {
+    optimizePostImages();
+  }
+})();
+</script>
+
 </body>
 </html>
