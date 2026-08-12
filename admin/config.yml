@@ -41,6 +41,21 @@ collections:
         widget: "list"
         required: false
         hint: "본문과 실제로 관련된 키워드만 추가하세요."
+      - label: "콘텐츠 유형"
+        name: "content_type"
+        widget: "select"
+        default: "설치 가이드"
+        options: ["설치 가이드", "운영사례", "렌탈 안내", "비용 체크", "상품 구성", "운영 방법"]
+      - label: "핵심 키워드"
+        name: "primary_keyword"
+        widget: "string"
+        required: false
+        hint: "예: 부산 재송동 냉동자판기 설치"
+      - label: "관련 글 추천용 키워드"
+        name: "related_keywords"
+        widget: "list"
+        required: false
+        hint: "비슷한 지역·제품 글을 연결할 때 사용할 키워드"
       - { label: "대표 이미지", name: "featured_image", widget: "image", required: false }
       - { label: "대표 이미지 설명(ALT)", name: "image_alt", widget: "string", required: false }
       - { label: "본문", name: "body", widget: "markdown" }

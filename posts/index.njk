@@ -25,9 +25,10 @@ eleventyExcludeFromCollections: true
 <h1>무인자판기 설치·렌탈<br>정보 포스팅</h1>
 <span>지역별 설치 환경, 상품 구성, 운영 방법을 정보성 콘텐츠로 정리합니다.</span>
 </div>
-<div class="posts-grid">
+<div class="post-filter"><input id="postSearch" type="search" placeholder="지역·자판기·설치공간 검색"><select id="provinceFilter"><option value="">전국</option>{% set provinces = ["서울","부산","대구","인천","광주","대전","울산","세종","경기","강원","충북","충남","전북","전남","경북","경남","제주"] %}{% for p in provinces %}<option>{{ p }}</option>{% endfor %}</select></div>
+<div class="posts-grid" id="postsGrid">
 {% for post in collections.publishedPosts %}
-<a class="post-card" href="{{ post.url }}">
+<a class="post-card" href="{{ post.url }}" data-province="{{ post.data.province }}" data-search="{{ post.data.title }} {{ post.data.province }} {{ post.data.city }} {{ post.data.district }} {{ post.data.product }} {{ post.data.place }}">
   {% if post.data.featured_image %}<img src="{{ post.data.featured_image }}" alt="{{ post.data.image_alt or post.data.title }}">{% endif %}
   <div>
     <p>{{ post.data.province }} {{ post.data.city }} {% if post.data.district %}{{ post.data.district }}{% endif %}</p>
@@ -45,5 +46,9 @@ eleventyExcludeFromCollections: true
 </div>
 </main>
 <footer class="post-footer">© LK Smart Vending · {{ site.phone }}</footer>
-</body>
+<script>
+const q=document.getElementById('postSearch'),pf=document.getElementById('provinceFilter');
+function filterPosts(){const term=(q.value||'').trim().toLowerCase(),province=pf.value;document.querySelectorAll('.post-card').forEach(card=>{const okTerm=!term||(card.dataset.search||'').toLowerCase().includes(term);const okProvince=!province||card.dataset.province===province;card.style.display=okTerm&&okProvince?'':'none';});}
+q.addEventListener('input',filterPosts);pf.addEventListener('change',filterPosts);
+</script></body>
 </html>
