@@ -1,0 +1,24 @@
+LK Smart Vending V2.6 - 포스팅 목록 생성 오류 수정
+
+실제 원인
+- posts/posts.11tydata.js는 posts 폴더의 모든 템플릿에 적용됩니다.
+- 그 안의 eleventyComputed permalink와 layout이 posts/index.njk에도 적용되고 있었습니다.
+- 따라서 index.njk에 적은 /posts/index.html 설정이 개별 포스팅 주소 규칙으로 덮어써졌습니다.
+- 동시에 Eleventy 설정의 ignores.add("*.md")는 CMS가 만드는 Markdown 게시글까지 제외할 위험이 있었습니다.
+
+V2.6 수정
+1. posts/index.njk는 무조건 /posts/index.html로 출력
+2. posts/index.njk에는 post.njk 레이아웃을 적용하지 않음
+3. posts/index.njk는 posts 컬렉션에서 제외
+4. 실제 CMS Markdown 게시글에만 post.njk + 개별 URL 규칙 적용
+5. 전역 *.md ignore 제거
+6. README/운영 문서만 선택적으로 ignore
+7. 기존 이미지 업로드 및 무제한 비율 설정 유지
+8. 기존 /admin/, marketing.html, Netlify OAuth 구조 유지
+
+배포 후 확인
+- https://lk-smart-vending.netlify.app/posts/
+- https://lk-smart-vending.netlify.app/posts/index.html
+- https://lk-smart-vending.netlify.app/diagnostic.html
+
+두 posts 주소가 모두 열리면 정상입니다.
