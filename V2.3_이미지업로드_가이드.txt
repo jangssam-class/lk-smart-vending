@@ -1,0 +1,15 @@
+LK Smart Vending V2.3 CMS 이미지 수정
+
+수정 내용
+1. Decap CMS 업로드 위치: images/uploads
+2. 게시글에서 접근하는 공개 경로: /images/uploads
+3. CMS 대표 이미지 필드 추가
+4. 게시글 템플릿에서 대표 이미지 자동 표시
+5. 본문에 삽입한 이미지도 반응형 표시
+6. Eleventy가 images 폴더를 결과 사이트에 그대로 복사하도록 설정
+
+사용 방법
+- GitHub 저장소에 이 버전을 덮어쓰기 후 Commit
+- Netlify가 Published가 된 뒤 /admin/ 접속
+- 새 글에서 대표 이미지를 선택하거나 본문에 이미지를 삽입
+- 게시 후 GitHub images/uploads 폴더에 이미지가 생성되었는지 확인

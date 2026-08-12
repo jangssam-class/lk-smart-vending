@@ -42,6 +42,6 @@ collections:
         widget: "list"
         required: false
         hint: "본문과 실제로 관련된 키워드만 추가하세요."
-      - { label: "대표 이미지", name: "featured_image", widget: "image", required: false }
+      - { label: "대표 이미지", name: "featured_image", widget: "image", required: false , hint: "가로·세로 크기와 비율 제한 없이 업로드할 수 있습니다. 원본 비율을 유지해 자동 표시됩니다." }
       - { label: "대표 이미지 설명(ALT)", name: "image_alt", widget: "string", required: false }
       - { label: "본문", name: "body", widget: "markdown" }

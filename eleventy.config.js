@@ -1,4 +1,5 @@
 export default function(eleventyConfig) {
+  eleventyConfig.addPassthroughCopy("images");
   eleventyConfig.addPassthroughCopy({"index.html": "index.html"});
   eleventyConfig.addPassthroughCopy({"style.css": "style.css"});
   eleventyConfig.addPassthroughCopy({"script.js": "script.js"});
