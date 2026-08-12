@@ -1,0 +1,15 @@
+V2.5 수정 내용
+- /posts/ 무한 리디렉션 제거
+- posts/index.html 직접 제공
+- CMS 이미지 저장: images/uploads
+- 공개 이미지 경로: /images/uploads
+- Eleventy images passthrough 유지
+- 대표 이미지 상대/절대 경로 안전 처리
+- 이미지 크기/비율 제한 없음 유지
+- diagnostic.html 추가
+
+적용 후 확인:
+https://lk-smart-vending.netlify.app/posts/
+https://lk-smart-vending.netlify.app/admin/
+https://lk-smart-vending.netlify.app/marketing.html
+https://lk-smart-vending.netlify.app/diagnostic.html
