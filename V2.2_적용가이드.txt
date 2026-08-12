@@ -1,0 +1,10 @@
+V2.2 적용 방법
+
+1. 이 ZIP의 파일을 GitHub lk-smart-vending 저장소에 덮어쓰기 업로드
+2. Commit changes
+3. Netlify 자동 배포 대기
+4. Published 확인
+5. /admin/에서 새 포스팅 작성 시 URL ID 입력
+   예: busan-jaesong-vending
+6. URL ID에는 한글, 공백, ?, #, / 등을 넣지 않음
+7. 제목/본문은 한글 그대로 사용 가능

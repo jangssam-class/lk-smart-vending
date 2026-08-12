@@ -8,6 +8,10 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"_redirects": "_redirects"});
 
   eleventyConfig.ignores.add("README.md");
+  eleventyConfig.ignores.add("*.md");
+  eleventyConfig.ignores.add("VERSION.txt");
+  eleventyConfig.ignores.add("V2.1_설치및운영가이드.md");
+  eleventyConfig.ignores.add("V1.9_설치및운영가이드.md");
   eleventyConfig.ignores.add("node_modules/**");
   eleventyConfig.ignores.add("_site/**");
 

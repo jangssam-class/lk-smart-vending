@@ -18,10 +18,11 @@ collections:
     create: true
     extension: "md"
     format: "frontmatter"
-    slug: "{{year}}-{{month}}-{{day}}-{{title}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug_id}}"
     summary: "{{title}} · {{province}} {{city}}"
     fields:
       - { label: "포스팅 제목", name: "title", widget: "string", hint: "예: 부산 재송동 냉동자판기 설치 렌탈 무인 멀티자판기 운영사례 음료 간식" }
+      - { label: "URL ID", name: "slug_id", widget: "string", hint: "영문 소문자·숫자·하이픈만 사용. 예: busan-jaesong-vending", pattern: ["^[a-z0-9-]+$", "영문 소문자, 숫자, 하이픈(-)만 사용할 수 있습니다."] }
       - { label: "검색결과 설명문(META)", name: "description", widget: "text", hint: "검색결과용 짧은 요약문입니다. 1,000~1,500자 본문은 아래 본문 영역에 작성하세요." }
       - { label: "발행일", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
       - { label: "수정일", name: "updated", widget: "datetime", required: false, format: "YYYY-MM-DDTHH:mm:ssZ" }

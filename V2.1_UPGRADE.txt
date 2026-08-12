@@ -1,0 +1,9 @@
+# V2.1 지역 콘텐츠 업그레이드
+- marketing.html: 제목, 연관 키워드, 짧은 META 설명, 1,000~1,500자 정보성 본문 초안 생성
+- CMS 새 글 바로가기: /admin/#/collections/posts/new
+- 홈페이지: 최근 발행 포스팅 최대 6개 자동 노출
+- posts-feed.json: 홈페이지용 게시물 피드
+- 실제 Netlify 주소를 canonical 기준 URL로 적용
+- CMS 설명문과 본문의 역할을 구분
+
+검색결과 meta description 자체는 길게 만들지 않습니다. 네이버 공식 가이드에 따라 간결한 요약으로 유지하고, 1,000~1,500자는 실제 정보성 본문 초안에 적용합니다.

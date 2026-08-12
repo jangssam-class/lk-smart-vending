@@ -14,4 +14,36 @@ function g(){let l=loc(),pr=prod.value,pl=place.value,u=use.value,alt=pr==='냉�
 function count(){let n=$('draftText').value.length,el=$('charCount');el.textContent=n;el.className='count '+(n>=1000&&n<=1500?'good':'warn')}
 async function cp(text){await navigator.clipboard.writeText(text);alert('복사했습니다.')}
 p.innerHTML=Object.keys(R).map(x=>`<option>${x}</option>`).join('');p.value='부산';p.onchange=fc;c.onchange=g;[d,prod,place,use].forEach(e=>e.addEventListener(e===d?'input':'change',g));$('draftText').addEventListener('input',count);$('copyTitle').onclick=()=>cp(selectedTitle);$('copyMeta').onclick=()=>cp($('metaDesc').textContent);$('copyDraft').onclick=()=>cp($('draftText').value);$('copyAll').onclick=()=>{let x=JSON.parse(localStorage.getItem('lkMarketingDraft'));cp(`제목: ${x.title}\n검색 설명문: ${x.description}\n시·도: ${x.province}\n시·군·구: ${x.city}\n읍·면·동: ${x.district}\n제품: ${x.product}\n설치 공간: ${x.place}\n연관 키워드: ${x.keywords.join(', ')}\n\n본문\n${$('draftText').value}`)};fc();
+
+function makeSafeSlug(){
+  const province=(document.getElementById('p')?.value||'').toLowerCase();
+  const city=(document.getElementById('c')?.value||'').toLowerCase();
+  const dong=(document.getElementById('d')?.value||'').trim();
+  const prod=(document.getElementById('prod')?.value||'').trim();
+
+  const map = {
+    '부산':'busan','서울':'seoul','대구':'daegu','인천':'incheon','광주':'gwangju',
+    '대전':'daejeon','울산':'ulsan','세종':'sejong','경기':'gyeonggi','강원':'gangwon',
+    '충북':'chungbuk','충남':'chungnam','전북':'jeonbuk','전남':'jeonnam','경북':'gyeongbuk',
+    '경남':'gyeongnam','제주':'jeju',
+    '냉동자판기':'frozen-vending','무인자판기':'unmanned-vending','멀티자판기':'multi-vending',
+    '스마트자판기':'smart-vending','무인판매기':'unmanned-retail'
+  };
+  const citySafe = String(city).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  const dongSafe = dong ? 'local' : '';
+  const productSafe = map[prod] || 'vending';
+  return [map[province]||'kr', citySafe||'', dongSafe, productSafe].filter(Boolean).join('-');
+}
+function refreshSafeSlug(){
+  const el=document.getElementById('safeSlugPreview');
+  if(el) el.textContent=makeSafeSlug();
+}
+document.addEventListener('change', refreshSafeSlug);
+document.addEventListener('input', refreshSafeSlug);
+document.addEventListener('DOMContentLoaded', refreshSafeSlug);
+document.getElementById('copySlugBtn')?.addEventListener('click', async()=>{
+  const v=makeSafeSlug();
+  try{ await navigator.clipboard.writeText(v); }catch(e){}
+});
+
 </script></body></html>

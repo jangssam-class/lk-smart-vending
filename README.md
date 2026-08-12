@@ -17,3 +17,17 @@
 주의:
 - `_data/site.json`의 URL은 Netlify 실제 주소가 생긴 뒤 한 번 수정해야 합니다.
 - 네이버 검색 노출은 검색로봇의 수집/색인/랭킹 결과이므로 보장할 수 없습니다.
+
+
+## V2.2 Netlify 배포 오류 수정
+- CMS에 URL ID(slug_id) 필드 추가
+- URL ID는 영문 소문자/숫자/하이픈만 허용
+- 게시글 URL은 날짜 + 안전한 slug_id로 생성
+- 루트 문서 Markdown 파일을 Eleventy 빌드 대상에서 제외
+- 특수문자(#, ?)가 URL/파일명으로 들어가는 문제 방지
+- marketing.html에 안전한 URL ID 생성/복사 기능 추가
+
+예시:
+표시 제목: 부산 재송동 냉동자판기 설치 렌탈 무인 멀티자판기 운영사례 음료 간식
+URL ID: busan-jaesong-vending
+실제 URL: /posts/20260812-busan-jaesong-vending/
