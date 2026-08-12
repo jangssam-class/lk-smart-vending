@@ -1,0 +1,22 @@
+---
+permalink: /rss.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+<title>{{ site.name | xmlEscape }} 정보 포스팅</title>
+<link>{{ site.url }}/posts/</link>
+<description>{{ site.description | xmlEscape }}</description>
+<language>ko</language>
+{% for post in collections.publishedPosts %}
+<item>
+<title>{{ post.data.title | xmlEscape }}</title>
+<link>{{ site.url }}{{ post.url }}</link>
+<guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
+<pubDate>{{ post.data.date | rfc822 }}</pubDate>
+<description><![CDATA[{{ post.templateContent | safe }}]]></description>
+</item>
+{% endfor %}
+</channel>
+</rss>

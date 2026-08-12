@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ title }}{% if province %} | {{ province }}{% endif %}</title>
+  <meta name="description" content="{{ description | xmlEscape }}">
+  {% if keywords %}
+  <meta name="keywords" content="{% for keyword in keywords %}{{ keyword }}{% if not loop.last %}, {% endif %}{% endfor %}">
+  {% endif %}
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{ title | xmlEscape }}">
+  <meta property="og:description" content="{{ description | xmlEscape }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  {% if featured_image %}<meta property="og:image" content="{{ site.url }}{{ featured_image }}">{% endif %}
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/posts.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Article",
+    "headline": {{ title | dump | safe }},
+    "description": {{ description | dump | safe }},
+    "datePublished":"{{ date | isoDate }}",
+    "dateModified":"{{ updated | default(date) | isoDate }}",
+    "mainEntityOfPage":"{{ site.url }}{{ page.url }}",
+    "author":{"@type":"Person","name":"{{ site.manager }}"},
+    "publisher":{"@type":"Organization","name":"{{ site.name }}"}
+  }
+  </script>
+</head>
+<body>
+<header class="post-header">
+  <a class="post-brand" href="/"><span>LK</span><b>SMART VENDING</b></a>
+  <nav><a href="/posts/">전체 포스팅</a><a href="/#regions">전국 설치</a><a href="{{ site.consultUrl }}" target="_blank" rel="noopener">설치 상담</a></nav>
+</header>
+
+<main class="post-shell">
+  <article class="post-article">
+    <div class="post-meta-top">
+      <span>INFORMATION</span>
+      <time datetime="{{ date | isoDate }}">{{ date | dateKo }}</time>
+    </div>
+    <h1>{{ title }}</h1>
+    <p class="post-description">{{ description }}</p>
+
+    <div class="post-tags">
+      {% if province %}<span>{{ province }}</span>{% endif %}
+      {% if city %}<span>{{ city }}</span>{% endif %}
+      {% if district %}<span>{{ district }}</span>{% endif %}
+      {% if product %}<span>{{ product }}</span>{% endif %}
+      {% if place %}<span>{{ place }}</span>{% endif %}
+    </div>
+
+    {% if featured_image %}
+      <figure class="post-hero">
+        <img src="{{ featured_image }}" alt="{{ image_alt or title }}">
+      </figure>
+    {% endif %}
+
+    <div class="post-body">
+      {{ content | safe }}
+    </div>
+
+    <aside class="post-cta">
+      <p>INSTALLATION CONSULTATION</p>
+      <h2>설치 장소와 판매 상품에 맞는 구성을 상담해보세요.</h2>
+      <div>
+        <a class="post-btn primary" href="{{ site.consultUrl }}" target="_blank" rel="noopener">네이버 설치 상담폼</a>
+        <a class="post-btn" href="tel:01097680911">{{ site.phone }}</a>
+      </div>
+    </aside>
+  </article>
+
+  <aside class="post-side">
+    <div class="side-card">
+      <span>지역</span><strong>{{ province }} {{ city }} {{ district }}</strong>
+      <span>제품</span><strong>{{ product or "무인자판기" }}</strong>
+      <span>설치공간</span><strong>{{ place or "맞춤 상담" }}</strong>
+    </div>
+    <a class="side-link" href="/posts/">다른 정보성 포스팅 보기 →</a>
+    <a class="side-link" href="/marketing.html">지역별 포스팅 도구 →</a>
+  </aside>
+</main>
+
+<footer class="post-footer">© LK Smart Vending · 관리자 {{ site.manager }} · {{ site.phone }}</footer>
+</body>
+</html>

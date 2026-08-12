@@ -1,0 +1,45 @@
+backend:
+  name: git-gateway
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+locale: "ko"
+
+collections:
+  - name: "posts"
+    label: "지역 마케팅 포스팅"
+    label_singular: "포스팅"
+    folder: "posts"
+    create: true
+    extension: "md"
+    format: "frontmatter"
+    slug: "{{year}}-{{month}}-{{day}}-{{title}}"
+    summary: "{{title}} · {{province}} {{city}}"
+    fields:
+      - { label: "포스팅 제목", name: "title", widget: "string", hint: "예: 부산 재송동 냉동자판기 설치 렌탈 무인 멀티자판기 운영사례 음료 간식" }
+      - { label: "검색 설명문", name: "description", widget: "text", hint: "검색 결과에서 글 내용을 요약해 보여줄 1~2문장" }
+      - { label: "발행일", name: "date", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "수정일", name: "updated", widget: "datetime", required: false, format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "시·도", name: "province", widget: "string", hint: "예: 부산" }
+      - { label: "시·군·구", name: "city", widget: "string", hint: "예: 해운대구" }
+      - { label: "읍·면·동", name: "district", widget: "string", required: false, hint: "예: 재송동" }
+      - label: "제품 키워드"
+        name: "product"
+        widget: "select"
+        options: ["냉동자판기", "무인자판기", "멀티자판기", "스마트자판기", "무인판매기"]
+      - label: "설치 공간"
+        name: "place"
+        widget: "select"
+        options: ["오피스", "병원", "헬스장", "학교·학원", "공장", "호텔·숙박", "아파트", "무인매장", "기타 시설"]
+      - label: "연관 키워드"
+        name: "keywords"
+        widget: "list"
+        required: false
+        hint: "본문과 실제로 관련된 키워드만 추가하세요."
+      - { label: "대표 이미지", name: "featured_image", widget: "image", required: false }
+      - { label: "대표 이미지 설명(ALT)", name: "image_alt", widget: "string", required: false }
+      - { label: "본문", name: "body", widget: "markdown" }

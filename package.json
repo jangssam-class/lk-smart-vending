@@ -1,0 +1,13 @@
+{
+  "name": "lk-smart-vending-site",
+  "private": true,
+  "version": "1.9.0",
+  "type": "module",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6"
+  }
+}
