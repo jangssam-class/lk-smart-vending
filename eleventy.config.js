@@ -7,6 +7,8 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"script.js": "script.js"});
   eleventyConfig.addPassthroughCopy({"images": "images"});
   eleventyConfig.addPassthroughCopy({"marketing.html": "marketing.html"});
+  eleventyConfig.addPassthroughCopy({"product-smart.html": "product-smart.html"});
+  eleventyConfig.addPassthroughCopy({"product-frozen.html": "product-frozen.html"});
   eleventyConfig.addPassthroughCopy({"admin": "admin"});
   eleventyConfig.addPassthroughCopy({"_redirects": "_redirects"});
 
