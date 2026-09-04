@@ -111,12 +111,12 @@
     </div>
 
     <div class="more-cases" id="moreCases" hidden>
-      <button class="case-card" data-case="cafe2"><img src="/images/install-more-01.png" alt="추가 설치 사례"><span>무인매장 추가 사례</span></button>
-      <button class="case-card" data-case="hospital2"><img src="/images/install-more-02.png" alt="추가 설치 사례"><span>의료시설 추가 사례</span></button>
-      <button class="case-card" data-case="office2"><img src="/images/install-more-03.png" alt="추가 설치 사례"><span>사내 복지공간 사례</span></button>
-      <button class="case-card" data-case="hotel2"><img src="/images/install-more-04.png" alt="추가 설치 사례"><span>숙박시설 추가 사례</span></button>
-      <button class="case-card" data-case="school2"><img src="/images/install-more-05.png" alt="추가 설치 사례"><span>교육시설 추가 사례</span></button>
-      <button class="case-card" data-case="leisure2"><img src="/images/install-more-06.png" alt="추가 설치 사례"><span>레저시설 추가 사례</span></button>
+      <button class="case-card" data-case="cafe2"><img src="/images/two-machines-cafe.jpg" alt="추가 설치 사례"><span>무인매장 추가 사례</span></button>
+      <button class="case-card" data-case="hospital2"><img src="/images/hospital-v17.jpg" alt="추가 설치 사례"><span>의료시설 추가 사례</span></button>
+      <button class="case-card" data-case="office2"><img src="/images/factory.jpg" alt="추가 설치 사례"><span>사내 복지공간 사례</span></button>
+      <button class="case-card" data-case="hotel2"><img src="/images/apartment.jpg" alt="추가 설치 사례"><span>숙박시설 추가 사례</span></button>
+      <button class="case-card" data-case="school2"><img src="/images/indoor-machine-wide.jpg" alt="추가 설치 사례"><span>교육시설 추가 사례</span></button>
+      <button class="case-card" data-case="leisure2"><img src="/images/outdoor-machine.jpg" alt="추가 설치 사례"><span>레저시설 추가 사례</span></button>
     </div>
   </section>
 
@@ -252,9 +252,17 @@ const caseData={
  school:{type:'SCHOOL & EDUCATION',title:'학교·교육시설 설치 사례',desc:'학생과 교직원의 이용 동선을 고려해 간식과 음료를 빠르게 구매할 수 있도록 배치하는 방식입니다.',meta:['추천상품: 음료·간식','운영포인트: 쉬는시간 빠른 구매','추천환경: 학교·학원·교육센터'],image:'/images/case-school.png'},
  leisure:{type:'FITNESS & LEISURE',title:'피트니스·레저 설치 사례',desc:'운동 전후 이용자가 음료와 간편 상품을 바로 구매할 수 있도록 접근성이 높은 위치에 설치합니다.',meta:['추천상품: 음료·건강 간식','운영포인트: 운동 전후 구매','추천환경: 헬스장·골프장·레저시설'],image:'/images/case-leisure.png'}
 };
+const extraCaseImages={
+  cafe2:'/images/two-machines-cafe.jpg',
+  hospital2:'/images/hospital-v17.jpg',
+  office2:'/images/factory.jpg',
+  hotel2:'/images/apartment.jpg',
+  school2:'/images/indoor-machine-wide.jpg',
+  leisure2:'/images/outdoor-machine.jpg'
+};
 ['cafe2','hospital2','office2','hotel2','school2','leisure2'].forEach((k,i)=>{
   const baseKeys=['cafe','hospital','office','hotel','school','leisure']; const b=caseData[baseKeys[i]];
-  caseData[k]={...b,title:b.title.replace('설치 사례','추가 설치 사례'),image:'/images/install-more-0'+(i+1)+'.png'};
+  caseData[k]={...b,title:b.title.replace('설치 사례','추가 설치 사례'),image:extraCaseImages[k]};
 });
 const modal=document.getElementById('caseModal');
 document.querySelectorAll('.case-card').forEach(btn=>btn.addEventListener('click',()=>{
