@@ -105,3 +105,119 @@
     display:none !important;
   }
 }
+
+
+/* ===== V4.0 MOBILE READABILITY FIX ===== */
+/* PC 화면은 기존 디자인 그대로 유지 */
+.mobile-product-links{display:none}
+
+/* 모바일에서는 상단의 큰 제품 이미지 패널을 숨기고,
+   깔끔한 두 개의 제품 바로가기 카드로 대체 */
+@media (max-width:720px){
+  .hero-product.smart,
+  .hero-product.frozen{
+    display:none!important;
+  }
+
+  .mobile-product-links{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    padding:0 20px 30px;
+    background:#061b33;
+  }
+  .mobile-product-links a{
+    min-width:0;
+    background:#fff;
+    border-radius:14px;
+    padding:18px 16px;
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+    box-shadow:0 8px 22px rgba(0,0,0,.12);
+  }
+  .mobile-product-links span{
+    color:#1671ef;
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.08em;
+  }
+  .mobile-product-links b{
+    color:#07192f;
+    font-size:18px;
+    line-height:1.25;
+    word-break:keep-all;
+  }
+  .mobile-product-links small{
+    color:#5d6c7f;
+    font-size:12px;
+    font-weight:800;
+  }
+
+  /* 설치사례 시작부가 위 요소에 겹치지 않도록 완전한 새 흐름으로 정리 */
+  .installations{
+    position:relative;
+    z-index:1;
+    clear:both;
+  }
+  .install-intro{
+    position:relative;
+    z-index:2;
+  }
+
+  /* 관리시스템 차트: 고정 높이 제거 → 전월 대비/설명까지 모두 보이게 */
+  .chart-card{
+    overflow:visible!important;
+    padding:18px 16px 22px!important;
+  }
+  .chart-body{
+    height:auto!important;
+    min-height:0!important;
+    display:grid!important;
+    grid-template-columns:28px 1fr!important;
+    grid-template-rows:210px auto!important;
+    gap:10px!important;
+    overflow:visible!important;
+  }
+  .y-axis{
+    height:210px;
+    padding-bottom:24px;
+  }
+  .bars{
+    height:210px;
+  }
+  .chart-summary{
+    grid-column:1/-1!important;
+    min-height:132px;
+    border-left:0!important;
+    border-top:1px solid #e1e5ea!important;
+    padding:18px 0 4px!important;
+    display:flex!important;
+    justify-content:flex-start!important;
+    align-items:flex-start!important;
+    overflow:visible!important;
+  }
+  .chart-summary small{
+    font-size:13px!important;
+  }
+  .chart-summary strong{
+    display:block;
+    font-size:31px!important;
+    line-height:1.1;
+    margin:8px 0 10px!important;
+  }
+  .chart-summary p{
+    display:block!important;
+    font-size:12px!important;
+    line-height:1.6!important;
+    margin:0!important;
+    color:#64717d!important;
+    white-space:normal!important;
+    overflow:visible!important;
+  }
+
+  /* 하단 고정 상담버튼과 내용이 겹치지 않도록 여유 확보 */
+  .management{
+    padding-bottom:105px!important;
+  }
+}
