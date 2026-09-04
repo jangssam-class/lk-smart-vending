@@ -96,3 +96,12 @@
   object-position:62% center!important;
 }
 /* 이미지 안 글자를 이용하지 않고 카드 오른쪽 HTML 텍스트만 사용 */
+
+
+/* ===== V3.9 MOBILE DETAIL BUTTON FIX ===== */
+/* PC 디자인은 그대로 유지하고, 모바일에서만 세로형 '자세히 보기' 버튼 제거 */
+@media (max-width: 720px){
+  .hero-more{
+    display:none !important;
+  }
+}

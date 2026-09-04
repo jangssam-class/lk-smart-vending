@@ -1,6 +1,4 @@
-LK-SMART-VENDING-V3.8-CLEAN-PRODUCT-LINEUP
-- 제품 라인업 영역의 이미지 내부 잘린 글자 제거
-- 스마트멀티밴딩머신: clean product image 적용
-- 냉동자판기: clean product image 적용
-- 제품명/설명은 HTML 텍스트로만 표시
-- 기존 설치사례/CMS/포스팅/영상 기능 유지
+LK-SMART-VENDING-V3.9-MOBILE-DETAIL-BUTTON-FIX
+- PC 버전 디자인 변경 없음
+- 모바일에서 메인 제품 영역의 세로형 '자세히 보기' 버튼 제거
+- 기존 설치사례 / CMS / 포스팅 / 영상 / Netlify 구조 유지
