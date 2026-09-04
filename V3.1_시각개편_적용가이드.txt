@@ -1,0 +1,19 @@
+LK Smart Vending V3.1 - 제안서 이미지 재가공 + 시각 디자인 전면 개편
+
+핵심 변경
+- 제안서 전체 페이지 이미지를 웹에 그대로 노출하던 구조 제거
+- 사용자 제공 스마트멀티/냉동 브로슈어에서 제품 장면만 별도 크롭해 새 이미지 파일로 사용
+- 스마트멀티: images/smart-product-clean.jpg
+- 냉동자판기: images/frozen-product-clean.jpg
+- 실제 설치사례는 기존 실제 현장 사진으로 구성
+- 메인 히어로를 스마트멀티 / 냉동자판기 2개 제품 패널로 재설계
+- 블루/네이비 기반 기업형 디자인
+- 제품 핵심기능, 관리시스템, 설치사례, 비교, 최신 포스팅, 상담 CTA 재배치
+- product-smart.html / product-frozen.html도 동일 톤으로 개편
+- 기존 CMS, posts, marketing, Netlify/GitHub 구조 유지
+
+적용
+1. 압축 해제
+2. GitHub lk-smart-vending 저장소에 전체 덮어쓰기
+3. Commit changes
+4. Netlify 최신 배포 Published 확인
