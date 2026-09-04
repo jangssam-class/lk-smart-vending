@@ -80,3 +80,19 @@
 
 /* 설치사례 카드 이미지는 각 공간에 맞게 중앙 크롭 */
 .case-card img{object-fit:cover;object-position:center}
+
+
+/* ===== V3.8 CLEAN PRODUCT LINE-UP ===== */
+.product-grid article{overflow:hidden}
+.product-grid article > img{
+  object-fit:cover!important;
+  object-position:center!important;
+  background:#eef2f5;
+}
+.product-grid article:first-child > img{
+  object-position:63% center!important;
+}
+.product-grid article.dark > img{
+  object-position:62% center!important;
+}
+/* 이미지 안 글자를 이용하지 않고 카드 오른쪽 HTML 텍스트만 사용 */

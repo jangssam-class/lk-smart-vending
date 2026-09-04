@@ -1,7 +1,6 @@
-LK-SMART-VENDING-V3.7-PARTIAL-FIX
-- 설치사례 추가 6장 중복 이미지 제거
-- 설치사례 더보기 토글 hidden 문제 수정
-- 스마트멀티밴딩머신 상세 이미지 실제 제품사진으로 교체
-- 냉동자판기 상세 이미지 실제 제품사진으로 교체
-- 상세페이지 잘린 이미지 내 문구 문제 제거
-- 기존 CMS/포스팅/영상/Netlify 구조 유지
+LK-SMART-VENDING-V3.8-CLEAN-PRODUCT-LINEUP
+- 제품 라인업 영역의 이미지 내부 잘린 글자 제거
+- 스마트멀티밴딩머신: clean product image 적용
+- 냉동자판기: clean product image 적용
+- 제품명/설명은 HTML 텍스트로만 표시
+- 기존 설치사례/CMS/포스팅/영상 기능 유지
