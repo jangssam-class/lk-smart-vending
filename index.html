@@ -85,27 +85,27 @@
 
     <div class="case-row" id="caseRow">
       <button class="case-card" data-case="cafe">
-        <img src="/images/install-ai-cafe.jpg" alt="카페와 무인매장 설치 사례">
+        <img src="/images/case-cafe.png" alt="카페와 무인매장 설치 사례">
         <span>카페 & 무인매장</span>
       </button>
       <button class="case-card" data-case="hospital">
-        <img src="/images/install-ai-hospital.jpg" alt="병원과 의료시설 설치 사례">
+        <img src="/images/case-hospital.png" alt="병원과 의료시설 설치 사례">
         <span>병원 & 의료시설</span>
       </button>
       <button class="case-card" data-case="office">
-        <img src="/images/install-ai-office.jpg" alt="회사와 공장 설치 사례">
+        <img src="/images/case-office.png" alt="회사와 공장 설치 사례">
         <span>회사 & 공장</span>
       </button>
       <button class="case-card" data-case="hotel">
-        <img src="/images/install-ai-hotel.jpg" alt="호텔과 리조트 설치 사례">
+        <img src="/images/case-hotel.png" alt="호텔과 리조트 설치 사례">
         <span>호텔 & 리조트</span>
       </button>
       <button class="case-card" data-case="school">
-        <img src="/images/install-ai-school.jpg" alt="학교와 교육시설 설치 사례">
+        <img src="/images/case-school.png" alt="학교와 교육시설 설치 사례">
         <span>학교 & 교육시설</span>
       </button>
       <button class="case-card" data-case="leisure">
-        <img src="/images/install-ai-leisure.jpg" alt="피트니스와 레저 설치 사례">
+        <img src="/images/case-leisure.png" alt="피트니스와 레저 설치 사례">
         <span>피트니스 & 레저</span>
       </button>
     </div>
@@ -245,12 +245,12 @@ mobileToggle?.addEventListener('click',()=>{const o=mobileNav.classList.toggle('
 mobileNav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobileNav.classList.remove('open');mobileNav.setAttribute('aria-hidden','true');}));
 
 const caseData={
- cafe:{type:'CAFE & UNMANNED STORE',title:'카페·무인매장 설치 사례',desc:'이용자가 머무는 시간대에 음료·간식·생활편의 상품을 비대면으로 구매할 수 있도록 구성한 사례입니다.',meta:['추천상품: 음료·간식·생활용품','운영포인트: 24시간 무인판매','추천환경: 카페·라운지·공용공간'],image:'/images/install-ai-cafe.jpg'},
- hospital:{type:'HOSPITAL & MEDICAL',title:'병원·의료시설 설치 사례',desc:'보호자와 방문객, 직원이 필요한 편의상품을 간편하게 구매할 수 있도록 동선과 접근성을 고려한 설치 사례입니다.',meta:['추천상품: 음료·간식·위생용품','운영포인트: 야간 편의성','추천환경: 로비·휴게실·직원공간'],image:'/images/install-ai-hospital.jpg'},
- office:{type:'OFFICE & FACTORY',title:'회사·공장 설치 사례',desc:'직원 복지와 교대근무 편의를 위해 휴게공간에 설치하여 간식과 음료를 상시 이용할 수 있도록 구성합니다.',meta:['추천상품: 음료·간식·간편식','운영포인트: 복지공간 강화','추천환경: 사무실·공장·휴게실'],image:'/images/install-ai-office.jpg'},
- hotel:{type:'HOTEL & RESORT',title:'호텔·리조트 설치 사례',desc:'프런트 운영시간 외에도 투숙객이 필요한 음료와 편의상품을 직접 구매할 수 있도록 구성한 사례입니다.',meta:['추천상품: 음료·간식·어메니티','운영포인트: 심야 편의성','추천환경: 로비·객실층·라운지'],image:'/images/install-ai-hotel.jpg'},
- school:{type:'SCHOOL & EDUCATION',title:'학교·교육시설 설치 사례',desc:'학생과 교직원의 이용 동선을 고려해 간식과 음료를 빠르게 구매할 수 있도록 배치하는 방식입니다.',meta:['추천상품: 음료·간식','운영포인트: 쉬는시간 빠른 구매','추천환경: 학교·학원·교육센터'],image:'/images/install-ai-school.jpg'},
- leisure:{type:'FITNESS & LEISURE',title:'피트니스·레저 설치 사례',desc:'운동 전후 이용자가 음료와 간편 상품을 바로 구매할 수 있도록 접근성이 높은 위치에 설치합니다.',meta:['추천상품: 음료·건강 간식','운영포인트: 운동 전후 구매','추천환경: 헬스장·골프장·레저시설'],image:'/images/install-ai-leisure.jpg'}
+ cafe:{type:'CAFE & UNMANNED STORE',title:'카페·무인매장 설치 사례',desc:'이용자가 머무는 시간대에 음료·간식·생활편의 상품을 비대면으로 구매할 수 있도록 구성한 사례입니다.',meta:['추천상품: 음료·간식·생활용품','운영포인트: 24시간 무인판매','추천환경: 카페·라운지·공용공간'],image:'/images/case-cafe.png'},
+ hospital:{type:'HOSPITAL & MEDICAL',title:'병원·의료시설 설치 사례',desc:'보호자와 방문객, 직원이 필요한 편의상품을 간편하게 구매할 수 있도록 동선과 접근성을 고려한 설치 사례입니다.',meta:['추천상품: 음료·간식·위생용품','운영포인트: 야간 편의성','추천환경: 로비·휴게실·직원공간'],image:'/images/case-hospital.png'},
+ office:{type:'OFFICE & FACTORY',title:'회사·공장 설치 사례',desc:'직원 복지와 교대근무 편의를 위해 휴게공간에 설치하여 간식과 음료를 상시 이용할 수 있도록 구성합니다.',meta:['추천상품: 음료·간식·간편식','운영포인트: 복지공간 강화','추천환경: 사무실·공장·휴게실'],image:'/images/case-office.png'},
+ hotel:{type:'HOTEL & RESORT',title:'호텔·리조트 설치 사례',desc:'프런트 운영시간 외에도 투숙객이 필요한 음료와 편의상품을 직접 구매할 수 있도록 구성한 사례입니다.',meta:['추천상품: 음료·간식·어메니티','운영포인트: 심야 편의성','추천환경: 로비·객실층·라운지'],image:'/images/case-hotel.png'},
+ school:{type:'SCHOOL & EDUCATION',title:'학교·교육시설 설치 사례',desc:'학생과 교직원의 이용 동선을 고려해 간식과 음료를 빠르게 구매할 수 있도록 배치하는 방식입니다.',meta:['추천상품: 음료·간식','운영포인트: 쉬는시간 빠른 구매','추천환경: 학교·학원·교육센터'],image:'/images/case-school.png'},
+ leisure:{type:'FITNESS & LEISURE',title:'피트니스·레저 설치 사례',desc:'운동 전후 이용자가 음료와 간편 상품을 바로 구매할 수 있도록 접근성이 높은 위치에 설치합니다.',meta:['추천상품: 음료·건강 간식','운영포인트: 운동 전후 구매','추천환경: 헬스장·골프장·레저시설'],image:'/images/case-leisure.png'}
 };
 ['cafe2','hospital2','office2','hotel2','school2','leisure2'].forEach((k,i)=>{
   const baseKeys=['cafe','hospital','office','hotel','school','leisure']; const b=caseData[baseKeys[i]];
