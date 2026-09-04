@@ -6,7 +6,9 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"posts.css": "posts.css"});
   eleventyConfig.addPassthroughCopy({"script.js": "script.js"});
   eleventyConfig.addPassthroughCopy({"images": "images"});
+  eleventyConfig.addPassthroughCopy({"videos": "videos"});
   eleventyConfig.addPassthroughCopy({"marketing.html": "marketing.html"});
+  eleventyConfig.addPassthroughCopy({"media-check.html": "media-check.html"});
   eleventyConfig.addPassthroughCopy({"product-smart.html": "product-smart.html"});
   eleventyConfig.addPassthroughCopy({"product-frozen.html": "product-frozen.html"});
   eleventyConfig.addPassthroughCopy({"admin": "admin"});

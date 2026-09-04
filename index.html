@@ -96,13 +96,17 @@
       <p class="eyebrow blue">SMART VENDING</p>
       <h2>스마트한 무인매장의 시작</h2>
       <p>실제 설치 영상을 통해 밴딩머신이 현장에 설치되는 과정과 운영 모습을 확인해보세요.</p>
-      <a class="btn btn-blue" href="#installVideo">▷ 설치 영상 보기</a>
+      <button class="btn btn-blue video-play-button" type="button" id="playInstallVideo">▷ 설치 영상 보기</button>
     </div>
     <div class="video-frame" id="installVideo">
-      <video controls playsinline preload="metadata" poster="/images/product-smart-user.png">
-        <source src="/videos/installation.mp4" type="video/mp4">
+      <video id="installationVideo" controls playsinline preload="metadata"
+        poster="/images/product-smart-user.png">
+        <source src="/videos/installation.mp4?v=3.3" type="video/mp4">
         이 브라우저는 동영상 재생을 지원하지 않습니다.
       </video>
+      <a class="video-fallback" href="/videos/installation.mp4?v=3.3" target="_blank" rel="noopener">
+        영상이 재생되지 않으면 새 창에서 열기 →
+      </a>
     </div>
   </section>
 
@@ -113,12 +117,12 @@
       <a class="small-outline" href="#caseGallery">설치사례 더보기 →</a>
     </div>
     <div class="install-grid" id="caseGallery">
-      <figure><img src="/images/two-machines-cafe.jpg" alt="카페 및 무인매장 설치 사례"><figcaption>카페 & 무인매장</figcaption></figure>
-      <figure><img src="/images/hospital-new.jpg" alt="병원 및 의료시설 설치 사례"><figcaption>병원 & 의료시설</figcaption></figure>
-      <figure><img src="/images/factory.jpg" alt="회사 및 공장 설치 사례"><figcaption>회사 & 공장</figcaption></figure>
-      <figure><img src="/images/hotel.jpg" alt="호텔 및 리조트 설치 사례"><figcaption>호텔 & 리조트</figcaption></figure>
-      <figure><img src="/images/school.jpg" alt="학교 및 교육시설 설치 사례"><figcaption>학교 & 교육시설</figcaption></figure>
-      <figure><img src="/images/fitness.jpg" alt="피트니스 및 레저 설치 사례"><figcaption>피트니스 & 레저</figcaption></figure>
+      <figure><img src="/images/case-cafe.png" alt="카페 및 무인매장 설치 사례"><figcaption>카페 & 무인매장</figcaption></figure>
+      <figure><img src="/images/case-hospital.png" alt="병원 및 의료시설 설치 사례"><figcaption>병원 & 의료시설</figcaption></figure>
+      <figure><img src="/images/case-office.png" alt="회사 및 공장 설치 사례"><figcaption>회사 & 공장</figcaption></figure>
+      <figure><img src="/images/case-hotel.png" alt="호텔 및 리조트 설치 사례"><figcaption>호텔 & 리조트</figcaption></figure>
+      <figure><img src="/images/case-school.png" alt="학교 및 교육시설 설치 사례"><figcaption>학교 & 교육시설</figcaption></figure>
+      <figure><img src="/images/case-leisure.png" alt="피트니스 및 레저 설치 사례"><figcaption>피트니스 & 레저</figcaption></figure>
     </div>
   </section>
 
@@ -234,6 +238,14 @@ nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   nav.classList.remove('open');
   nav.setAttribute('aria-hidden', 'true');
 }));
+
+
+const playInstallVideo = document.getElementById('playInstallVideo');
+const installationVideo = document.getElementById('installationVideo');
+playInstallVideo?.addEventListener('click', async () => {
+  installationVideo?.scrollIntoView({behavior:'smooth', block:'center'});
+  try { await installationVideo?.play(); } catch (err) {}
+});
 
 fetch('/posts-feed.json')
   .then(r => r.ok ? r.json() : [])

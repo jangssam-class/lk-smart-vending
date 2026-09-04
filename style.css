@@ -2,3 +2,32 @@
 
 @media(max-width:1120px){.desktop-nav{display:none}.nav-contact{display:none}.mobile-toggle{display:block}.mobile-nav{position:fixed;top:70px;left:0;right:0;background:#fff;z-index:999;display:grid;padding:16px 24px;transform:translateY(-150%);transition:.3s;border-bottom:1px solid #ddd}.mobile-nav.open{transform:translateY(0)}.mobile-nav a{padding:13px 0;border-bottom:1px solid #eee;font-weight:800}.hero-sample{grid-template-columns:1fr 1fr}.hero-copy{grid-column:1/-1;padding:56px 34px}.solution-card{min-height:460px}.trust-strip{grid-template-columns:repeat(3,1fr)}.trust-strip article{padding:14px;border-bottom:1px solid var(--line)}.install-video-section{grid-template-columns:1fr}.video-frame video{height:auto;max-height:480px}.installations{grid-template-columns:1fr}.install-grid{grid-template-columns:repeat(3,1fr)}.product-panel{grid-template-columns:1fr}.management-section{grid-template-columns:1fr}.section-head{grid-template-columns:1fr}.latest-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:720px){.topbar{height:62px;padding:0 18px}.mobile-nav{top:62px}.logo-name{font-size:12px}.hero-sample{display:block}.hero-copy{padding:46px 20px 40px}.hero-copy h1{font-size:45px}.hero-description{font-size:14px}.hero-buttons{flex-direction:column}.hero-points{grid-template-columns:1fr 1fr}.solution-card{height:420px}.machine-stage{padding-top:94px}.solution-copy{left:20px;top:22px}.solution-copy h2{font-size:29px}.trust-strip{grid-template-columns:1fr 1fr;padding:20px 14px}.trust-strip article{grid-template-columns:32px 1fr;padding:14px 10px}.trust-strip article>span{font-size:23px}.install-video-section{padding:34px 18px}.video-frame video{height:auto}.installations{padding:42px 18px}.install-grid{grid-template-columns:1fr 1fr}.install-grid figure{height:190px}.product-compare,.latest-section{padding:70px 18px}.product-panels{grid-template-columns:1fr}.product-photo{min-height:360px}.product-panel-body{padding:32px 22px}.management-section{padding:70px 18px}.manage-list{grid-template-columns:1fr}.latest-grid{grid-template-columns:1fr}.contact-section{padding:60px 18px;flex-direction:column;align-items:flex-start}.contact-actions{width:100%;flex-direction:column;align-items:stretch}.footer{padding:24px 18px 90px;flex-wrap:wrap}.floating{left:16px;right:16px;text-align:center}}
+
+
+/* V3.3 installation media fixes */
+.video-frame{position:relative}
+.video-frame video{
+  display:block;width:100%;height:310px;object-fit:contain;background:#02060c
+}
+.video-fallback{
+  display:block;padding:9px 14px;background:#06111f;color:#9db9da;
+  border-top:1px solid #1b2d42;font-size:11px;text-align:right
+}
+.video-play-button{cursor:pointer;font-family:inherit}
+
+.install-grid figure{background:#eef1f4}
+.install-grid img{width:100%;height:100%;object-fit:cover;object-position:center}
+.install-grid figure:nth-child(1) img{object-position:center 45%}
+.install-grid figure:nth-child(2) img{object-position:center 55%}
+.install-grid figure:nth-child(3) img{object-position:center 50%}
+.install-grid figure:nth-child(4) img{object-position:center 50%}
+.install-grid figure:nth-child(5) img{object-position:center 50%}
+.install-grid figure:nth-child(6) img{object-position:center 45%}
+
+@media(max-width:1120px){
+  .video-frame video{height:auto;max-height:520px}
+}
+@media(max-width:720px){
+  .video-frame video{width:100%;height:auto;max-height:none}
+  .video-fallback{text-align:center}
+}
