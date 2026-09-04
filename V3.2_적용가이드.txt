@@ -1,0 +1,28 @@
+LK Smart Vending V3.2 - 샘플 시안 기반 메인 개편
+
+반영 내용
+- 사용자가 승인한 샘플 시안의 전체 구성과 톤을 실제 HTML/CSS로 재구성
+- 네이비/블루 기업형 히어로
+- 스마트멀티밴딩머신 / 냉동자판기 2개 제품 카드
+- 사용자가 제공한 실제 제품 이미지로 교체
+  · 스마트멀티밴딩머신: images/product-smart-user.png
+  · 냉동자판기: images/product-frozen-user.png
+- 이미지가 잘리지 않도록 object-fit: contain 적용
+- 실제 설치영상 배치
+  · videos/installation.mp4
+  · 반응형 HTML5 video controls 적용
+- 3년 A/S / 원격관리 / 상품규격 / 결제 / 광고송출 핵심 기능 스트립
+- 설치사례 갤러리
+- 제품 비교
+- 스마트 관리시스템
+- 최근 포스팅
+- 상담 CTA
+- 모바일 반응형
+- 기존 CMS / posts / marketing / Netlify / GitHub 구조 유지
+
+적용 순서
+1. ZIP 압축 해제
+2. GitHub lk-smart-vending 저장소에 전체 파일 덮어쓰기
+3. Commit changes
+4. Netlify 최신 Production deploy가 Published인지 확인
+5. 홈페이지 강력 새로고침(Ctrl+F5)

@@ -2,21 +2,20 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LK Smart Vending | 스마트멀티밴딩머신 · 냉동자판기</title>
-  <meta name="description" content="스마트멀티밴딩머신과 냉동자판기를 판매 상품과 운영 목적에 맞춰 비교하세요. 설치사례, 관리 시스템, 결제, A/S, 상담 정보를 제공합니다.">
+  <meta name="description" content="스마트멀티밴딩머신과 냉동자판기를 판매 상품과 설치 환경에 맞춰 비교하세요. 실제 설치 영상, 설치사례, 관리 시스템, 상담 정보를 제공합니다.">
   <meta name="robots" content="index,follow">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="LK Smart Vending | 스마트멀티밴딩머신 · 냉동자판기">
-  <meta property="og:description" content="판매 상품에 맞는 두 가지 스마트 무인판매 솔루션">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 <header class="topbar">
   <a class="logo" href="#top" aria-label="LK Smart Vending 홈">
-    <span class="logo-mark">LK</span><span>SMART VENDING</span>
+    <span class="logo-symbol">LK</span>
+    <span class="logo-name">SMART VENDING</span>
   </a>
-  <nav class="nav">
+
+  <nav class="desktop-nav" aria-label="주요 메뉴">
     <a href="#top">홈</a>
     <a href="#products">제품소개</a>
     <a href="#cases">설치사례</a>
@@ -24,197 +23,237 @@
     <a href="#support">고객지원</a>
     <a href="/posts/">정보포스팅</a>
   </nav>
-  <a class="consult-btn" href="https://naver.me/xtNb86DN" target="_blank" rel="noopener">상담 문의</a>
-  <button class="menu-toggle" aria-label="모바일 메뉴 열기" aria-expanded="false">☰</button>
+
+  <a class="nav-contact" href="https://naver.me/xtNb86DN" target="_blank" rel="noopener">☎ 상담 문의</a>
+  <button class="mobile-toggle" type="button" aria-label="모바일 메뉴 열기">☰</button>
 </header>
 
-<div class="mobile-menu" aria-hidden="true">
-  <a href="#top">홈</a><a href="#products">제품소개</a><a href="#cases">설치사례</a>
-  <a href="#management">관리시스템</a><a href="#support">고객지원</a><a href="/posts/">정보포스팅</a>
+<nav class="mobile-nav" aria-hidden="true">
+  <a href="#top">홈</a>
+  <a href="#products">제품소개</a>
+  <a href="#cases">설치사례</a>
+  <a href="#management">관리시스템</a>
+  <a href="#support">고객지원</a>
+  <a href="/posts/">정보포스팅</a>
   <a href="https://naver.me/xtNb86DN" target="_blank" rel="noopener">상담 문의</a>
-</div>
+</nav>
 
 <main id="top">
-  <section class="hero">
+  <section class="hero-sample">
     <div class="hero-copy">
-      <p class="kicker light">SMART RETAIL, TWO SOLUTIONS</p>
+      <p class="eyebrow">SMART RETAIL, TWO SOLUTIONS</p>
       <h1>판매할 상품이 다르면<br>자판기도 달라야 합니다.</h1>
-      <p class="hero-desc">음료·간식·생활용품부터 밀키트·육류·디저트 같은 냉동상품까지, 공간과 상품 특성에 맞춰 <b>스마트멀티밴딩머신</b>과 <b>냉동자판기</b>를 비교해보세요.</p>
-      <div class="hero-actions">
-        <a class="button primary" href="#products">제품 비교하기</a>
-        <a class="button ghost" href="https://naver.me/xtNb86DN" target="_blank" rel="noopener">설치 상담하기</a>
+      <p class="hero-description">
+        음료·간식·생활용품부터 밀키트·육류·디저트 같은 냉동상품까지,
+        공간과 상품 특성에 맞춰 <strong>스마트멀티밴딩머신</strong>과
+        <strong>냉동자판기</strong>를 비교해보세요.
+      </p>
+      <div class="hero-buttons">
+        <a class="btn btn-blue" href="#products">제품 비교하기</a>
+        <a class="btn btn-outline-light" href="https://naver.me/xtNb86DN" target="_blank" rel="noopener">설치 상담하기</a>
       </div>
-      <div class="hero-metrics">
-        <div><b>24시간</b><span>무인운영</span></div>
-        <div><b>터치 결제</b><span>다양한 결제 지원</span></div>
-        <div><b>재고·매출</b><span>원격 관리</span></div>
-        <div><b>실내·실외</b><span>공간별 제안</span></div>
+      <div class="hero-points">
+        <div><span class="point-icon">◴</span><b>24시간 무인운영</b><small>365일 운영 대응</small></div>
+        <div><span class="point-icon">▱</span><b>터치 결제</b><small>다양한 결제 지원</small></div>
+        <div><span class="point-icon">▣</span><b>재고·매출 관리</b><small>원격 현황 확인</small></div>
+        <div><span class="point-icon">◇</span><b>다양한 설치공간</b><small>실내·실외 제안</small></div>
       </div>
     </div>
 
-    <a class="hero-panel smart-panel" href="/product-smart.html">
-      <img src="/images/smart-product-clean.jpg" alt="스마트멀티밴딩머신">
-      <div class="panel-overlay">
-        <span>01</span>
+    <a class="solution-card smart-card" href="/product-smart.html" aria-label="스마트멀티밴딩머신 상세보기">
+      <div class="solution-copy">
+        <span class="solution-no">01</span>
         <h2>스마트멀티<br>밴딩머신</h2>
         <p>음료 · 간식 · 생활용품 · 잡화</p>
       </div>
+      <div class="machine-stage">
+        <img src="/images/product-smart-user.png" alt="스마트멀티밴딩머신 실제 제품 이미지">
+      </div>
     </a>
 
-    <a class="hero-panel frozen-panel" href="/product-frozen.html">
-      <img src="/images/frozen-product-clean.jpg" alt="냉동자판기">
-      <div class="panel-overlay dark">
-        <span>02</span>
+    <a class="solution-card frozen-card" href="/product-frozen.html" aria-label="냉동자판기 상세보기">
+      <div class="solution-copy">
+        <span class="solution-no">02</span>
         <h2>냉동자판기</h2>
         <p>밀키트 · 육류 · 아이스크림 · 디저트</p>
       </div>
+      <div class="machine-stage frozen-stage">
+        <img src="/images/product-frozen-user.png" alt="냉동자판기 실제 제품 이미지">
+      </div>
     </a>
   </section>
 
-  <section class="benefit-strip">
-    <div class="benefit-title"><p class="kicker blue">WHY CHOOSE US</p><h2>운영을 단순하게 만드는<br>스마트 솔루션</h2></div>
-    <article><span class="benefit-icon">✓</span><b>3년 무상 A/S</b><p>계약 현장 설치일 기준</p></article>
-    <article><span class="benefit-icon">◌</span><b>원격 관리 시스템</b><p>재고·매출·상태 확인</p></article>
-    <article><span class="benefit-icon">⚙</span><b>다양한 상품 규격</b><p>트레이 커스터마이징</p></article>
-    <article><span class="benefit-icon">▭</span><b>다양한 결제 지원</b><p>카드·간편결제 중심</p></article>
-    <article><span class="benefit-icon">▶</span><b>광고 송출 지원</b><p>24″ 화면 활용</p></article>
+  <section class="trust-strip">
+    <article><span>✓</span><div><b>3년 무상 A/S</b><small>제안서 기준 계약 현장 설치일 기준</small></div></article>
+    <article><span>☁</span><div><b>원격 관리 시스템</b><small>재고·매출·상태 확인</small></div></article>
+    <article><span>⚙</span><div><b>다양한 상품 규격</b><small>트레이·구획 맞춤 구성</small></div></article>
+    <article><span>▭</span><div><b>다양한 결제 지원</b><small>카드·간편결제 중심</small></div></article>
+    <article><span>▶</span><div><b>광고 송출 지원</b><small>24″ 디스플레이 활용</small></div></article>
   </section>
 
-  <section class="section product-section" id="products">
-    <div class="section-heading">
-      <div><p class="kicker">PRODUCT LINE-UP</p><h2>두 가지 제품군으로<br>운영 목적을 나눕니다.</h2></div>
-      <p>제안서의 핵심 사양과 기능을 기준으로 정리했습니다. 실제 적용 사양과 옵션은 현장과 공급 구성에 따라 달라질 수 있습니다.</p>
+  <section class="install-video-section">
+    <div class="video-copy">
+      <p class="eyebrow blue">SMART VENDING</p>
+      <h2>스마트한 무인매장의 시작</h2>
+      <p>실제 설치 영상을 통해 밴딩머신이 현장에 설치되는 과정과 운영 모습을 확인해보세요.</p>
+      <a class="btn btn-blue" href="#installVideo">▷ 설치 영상 보기</a>
+    </div>
+    <div class="video-frame" id="installVideo">
+      <video controls playsinline preload="metadata" poster="/images/product-smart-user.png">
+        <source src="/videos/installation.mp4" type="video/mp4">
+        이 브라우저는 동영상 재생을 지원하지 않습니다.
+      </video>
+    </div>
+  </section>
+
+  <section class="installations" id="cases">
+    <div class="install-title">
+      <p class="eyebrow blue">ACTUAL INSTALLATIONS</p>
+      <h2>전국 다양한 공간에서<br>선택한 스마트 밴딩</h2>
+      <a class="small-outline" href="#caseGallery">설치사례 더보기 →</a>
+    </div>
+    <div class="install-grid" id="caseGallery">
+      <figure><img src="/images/two-machines-cafe.jpg" alt="카페 및 무인매장 설치 사례"><figcaption>카페 & 무인매장</figcaption></figure>
+      <figure><img src="/images/hospital-new.jpg" alt="병원 및 의료시설 설치 사례"><figcaption>병원 & 의료시설</figcaption></figure>
+      <figure><img src="/images/factory.jpg" alt="회사 및 공장 설치 사례"><figcaption>회사 & 공장</figcaption></figure>
+      <figure><img src="/images/hotel.jpg" alt="호텔 및 리조트 설치 사례"><figcaption>호텔 & 리조트</figcaption></figure>
+      <figure><img src="/images/school.jpg" alt="학교 및 교육시설 설치 사례"><figcaption>학교 & 교육시설</figcaption></figure>
+      <figure><img src="/images/fitness.jpg" alt="피트니스 및 레저 설치 사례"><figcaption>피트니스 & 레저</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="product-compare" id="products">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow blue">PRODUCT LINE-UP</p>
+        <h2>판매 상품 기준으로<br>제품을 선택하세요.</h2>
+      </div>
+      <p>일반 상품과 냉동상품은 내부 구조와 보관 방식이 다릅니다. 두 제품군의 핵심 차이를 간단하게 비교해보세요.</p>
     </div>
 
-    <div class="product-row smart-row">
-      <div class="product-image">
-        <img src="/images/smart-product-clean.jpg" alt="스마트멀티밴딩머신 제품">
-        <span>SMART MULTI</span>
-      </div>
-      <div class="product-copy">
-        <p class="kicker blue">SMART MULTI VENDING MACHINE</p>
-        <h3>상품 형태에 맞춰<br>트레이를 바꾸는 멀티 밴딩</h3>
-        <p>음료, 스낵, 생활용품, 어메니티 등 다양한 상품을 한 대에서 운영할 수 있도록 푸셔·스파이럴 등 상품 규격에 맞춘 구성을 적용합니다.</p>
-        <div class="product-feature-list">
-          <div><b>24″ 터치 디스플레이</b><span>상품 선택부터 결제까지 한 화면에서 진행</span></div>
-          <div><b>트레이 커스터마이징</b><span>상품 크기와 형태에 맞춘 배출 구조</span></div>
-          <div><b>관리 프로그램·앱</b><span>재고와 매출 현황 확인</span></div>
-          <div><b>광고·안내 화면</b><span>매장 안내와 광고 콘텐츠 송출</span></div>
+    <div class="product-panels">
+      <article class="product-panel">
+        <div class="product-photo contain">
+          <img src="/images/product-smart-user.png" alt="스마트멀티밴딩머신">
         </div>
-        <div class="spec-chips"><span>955 × 1,970 × 920mm</span><span>3~20℃</span><span>24″ Touch</span></div>
-        <a class="text-button" href="/product-smart.html">스마트멀티 상세보기 →</a>
-      </div>
-    </div>
-
-    <div class="product-row frozen-row">
-      <div class="product-copy dark-copy">
-        <p class="kicker cyan">FROZEN SHOWCASE VENDING</p>
-        <h3>냉동상품은<br>보관과 진열 방식부터 다르게.</h3>
-        <p>블록형 쇼케이스 구조로 냉동상품을 구획별로 진열하고, 화면에서 주문·결제 후 지정된 공간에서 상품을 수령하는 방식입니다.</p>
-        <div class="product-feature-list dark-list">
-          <div><b>-5~-22℃ 냉동 운영</b><span>육류·밀키트·아이스크림·디저트 등</span></div>
-          <div><b>블록형 잠금 구조</b><span>선택한 구획 중심의 상품 수령</span></div>
-          <div><b>재고·매출 통합관리</b><span>판매 및 재고 데이터 확인</span></div>
-          <div><b>다국어·원격지원</b><span>운영 환경을 고려한 지원 기능</span></div>
+        <div class="product-panel-body">
+          <small>SMART MULTI</small>
+          <h3>스마트멀티밴딩머신</h3>
+          <p>음료, 간식, 생활용품, 어메니티처럼 다양한 규격의 상품을 한 대에서 운영할 때 적합합니다.</p>
+          <ul>
+            <li>24″ 터치 디스플레이</li>
+            <li>상품별 트레이 구성</li>
+            <li>재고·매출 관리</li>
+            <li>광고·안내 콘텐츠 활용</li>
+          </ul>
+          <a href="/product-smart.html">자세히 보기 →</a>
         </div>
-        <div class="spec-chips dark-chips"><span>660 × 2,050 × 750mm</span><span>-5~-22℃</span><span>Touch + Remote</span></div>
-        <a class="text-button white" href="/product-frozen.html">냉동자판기 상세보기 →</a>
-      </div>
-      <div class="product-image dark-image">
-        <img src="/images/frozen-product-clean.jpg" alt="냉동 쇼케이스 자판기">
-        <span>FROZEN VENDING</span>
-      </div>
+      </article>
+
+      <article class="product-panel dark">
+        <div class="product-photo contain dark-bg">
+          <img src="/images/product-frozen-user.png" alt="냉동자판기">
+        </div>
+        <div class="product-panel-body">
+          <small>FROZEN</small>
+          <h3>냉동자판기</h3>
+          <p>밀키트, 육류, 아이스크림, 디저트처럼 냉동 보관이 필요한 상품 판매에 적합합니다.</p>
+          <ul>
+            <li>냉동 쇼케이스 구조</li>
+            <li>구획형 상품 수령</li>
+            <li>재고·매출 통합관리</li>
+            <li>원격 지원 기능</li>
+          </ul>
+          <a href="/product-frozen.html">자세히 보기 →</a>
+        </div>
+      </article>
     </div>
   </section>
 
-  <section class="section installation-section" id="cases">
-    <div class="section-heading">
-      <div><p class="kicker blue">ACTUAL INSTALLATIONS</p><h2>전국 다양한 공간에서<br>운영된 스마트 밴딩</h2></div>
-      <p>카페, 병원, 회사, 호텔, 학교, 피트니스 등 실제 설치 사례를 공간 유형별로 확인할 수 있습니다.</p>
-    </div>
-    <div class="case-grid">
-      <article><img src="/images/two-machines-cafe.jpg" alt="카페 및 무인매장 설치 사례"><span>카페 & 무인매장</span></article>
-      <article><img src="/images/hospital-new.jpg" alt="병원 및 의료시설 설치 사례"><span>병원 & 의료시설</span></article>
-      <article><img src="/images/factory.jpg" alt="회사 및 공장 설치 사례"><span>회사 & 공장</span></article>
-      <article><img src="/images/hotel.jpg" alt="호텔 및 리조트 설치 사례"><span>호텔 & 리조트</span></article>
-      <article><img src="/images/school.jpg" alt="학교 및 교육시설 설치 사례"><span>학교 & 교육시설</span></article>
-      <article><img src="/images/fitness.jpg" alt="피트니스 시설 설치 사례"><span>피트니스 & 레저</span></article>
-    </div>
-  </section>
-
-  <section class="management" id="management">
+  <section class="management-section" id="management">
     <div class="management-copy">
-      <p class="kicker cyan">SMART MANAGEMENT</p>
+      <p class="eyebrow light-blue">SMART MANAGEMENT</p>
       <h2>판매는 자동으로,<br>관리는 스마트하게.</h2>
-      <p>관리 프로그램과 앱을 통해 재고·매출과 운영 정보를 확인하고, 터치 화면을 활용해 상품과 안내 콘텐츠를 운영할 수 있습니다.</p>
-      <div class="management-grid">
+      <p>재고와 매출, 상품 구성, 운영 현황을 관리 프로그램과 앱을 통해 확인할 수 있도록 구성합니다.</p>
+      <div class="manage-list">
         <div><b>재고 관리</b><span>상품 재고 현황 확인</span></div>
         <div><b>매출 관리</b><span>판매 데이터 확인</span></div>
-        <div><b>상품 관리</b><span>상품 등록·변경</span></div>
-        <div><b>운영 지원</b><span>원격 지원 및 점검</span></div>
+        <div><b>상품 관리</b><span>상품 등록 및 변경</span></div>
+        <div><b>운영 지원</b><span>원격 점검 및 지원</span></div>
       </div>
     </div>
-    <div class="dashboard-card">
-      <div class="dash-top"><span></span><span></span><span></span><b>SMART DASHBOARD</b></div>
-      <div class="dash-metrics"><i></i><i></i><i></i></div>
-      <div class="dash-chart"><span style="height:36%"></span><span style="height:54%"></span><span style="height:44%"></span><span style="height:72%"></span><span style="height:58%"></span><span style="height:84%"></span><span style="height:68%"></span></div>
+    <div class="dashboard">
+      <div class="dash-header"><i></i><i></i><i></i><b>SMART DASHBOARD</b></div>
+      <div class="dash-boxes"><span></span><span></span><span></span></div>
+      <div class="dash-chart"><i style="height:35%"></i><i style="height:55%"></i><i style="height:43%"></i><i style="height:73%"></i><i style="height:59%"></i><i style="height:84%"></i><i style="height:69%"></i></div>
     </div>
   </section>
 
-  <section class="section comparison">
-    <div class="section-heading compact">
-      <div><p class="kicker">QUICK COMPARISON</p><h2>판매 상품 기준으로<br>선택하면 쉽습니다.</h2></div>
+  <section class="latest-section">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow blue">LATEST INFORMATION</p>
+        <h2>최근 정보 포스팅</h2>
+      </div>
+      <a class="small-outline" href="/posts/">전체 포스팅 보기</a>
     </div>
-    <div class="compare-cards">
-      <article><small>SMART MULTI</small><h3>일반·복합 상품</h3><p>음료, 간식, 생활용품, 잡화, 어메니티 등 서로 다른 규격의 상품을 한 대에서 운영할 때 적합합니다.</p><b>추천 공간</b><span>회사 · 병원 · 학교 · 호텔 · 카페 · 공장</span></article>
-      <article class="dark-card"><small>FROZEN</small><h3>냉동상품</h3><p>밀키트, 육류, 아이스크림, 디저트처럼 냉동 보관과 쇼케이스 진열이 필요한 상품에 적합합니다.</p><b>추천 공간</b><span>무인매장 · 캠핑장 · 디저트 · 특산품 · 펫푸드</span></article>
+    <div id="latestPostGrid" class="latest-grid">
+      <div class="empty-post">CMS에서 새 글을 발행하면 최근 포스팅이 이곳에 자동으로 표시됩니다.</div>
     </div>
   </section>
 
-  <section class="section latest-posts">
-    <div class="section-heading compact">
-      <div><p class="kicker blue">LATEST INFORMATION</p><h2>최근 정보 포스팅</h2><p>지역별 자판기 설치·렌탈·운영 정보를 확인하세요.</p></div>
-      <a class="outline-link" href="/posts/">전체 포스팅 보기</a>
+  <section class="contact-section" id="support">
+    <div>
+      <p class="eyebrow light">CONTACT</p>
+      <h2>판매 상품과 설치 장소를 알려주세요.</h2>
+      <p>공간과 상품에 맞는 제품 타입과 운영 방식을 함께 검토합니다.</p>
     </div>
-    <div class="latest-post-grid" id="latestPostGrid"><p>포스팅을 불러오는 중입니다.</p></div>
-  </section>
-
-  <section class="support section" id="support">
-    <div><p class="kicker light">CONTACT</p><h2>판매 상품과 설치 장소를 알려주세요.</h2><p>공간과 상품에 맞는 제품 타입과 운영 방식을 함께 검토합니다.</p></div>
-    <div class="support-actions">
-      <a class="button white" href="https://naver.me/xtNb86DN" target="_blank" rel="noopener">설치 상담 요청</a>
-      <a class="phone" href="tel:01097680911"><small>문의전화</small><b>010-9768-0911</b></a>
+    <div class="contact-actions">
+      <a class="btn btn-white" href="https://naver.me/xtNb86DN" target="_blank" rel="noopener">설치 상담 요청</a>
+      <a class="phone-link" href="tel:01097680911"><small>문의전화</small><b>010-9768-0911</b></a>
     </div>
   </section>
 </main>
 
-<footer>
+<footer class="footer">
   <strong>LK SMART VENDING</strong>
   <span>스마트멀티밴딩머신 · 냉동자판기</span>
-  <span>상담 010-9768-0911</span>
+  <span>문의 010-9768-0911</span>
 </footer>
 
-<a class="floating-consult" href="https://naver.me/xtNb86DN" target="_blank" rel="noopener">상담 문의</a>
+<a class="floating" href="https://naver.me/xtNb86DN" target="_blank" rel="noopener">상담 문의</a>
 
 <script>
-const toggle=document.querySelector('.menu-toggle');
-const mobile=document.querySelector('.mobile-menu');
-toggle?.addEventListener('click',()=>{
-  const open=mobile.classList.toggle('open');
-  toggle.setAttribute('aria-expanded',String(open));
-  mobile.setAttribute('aria-hidden',String(!open));
+const toggle = document.querySelector('.mobile-toggle');
+const nav = document.querySelector('.mobile-nav');
+toggle?.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  nav.setAttribute('aria-hidden', String(!open));
 });
-mobile?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mobile.classList.remove('open');mobile.setAttribute('aria-hidden','true');toggle?.setAttribute('aria-expanded','false')}));
+nav?.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('open');
+  nav.setAttribute('aria-hidden', 'true');
+}));
 
-fetch('/posts-feed.json').then(r=>r.ok?r.json():[]).then(items=>{
-  const wrap=document.getElementById('latestPostGrid');
-  if(!wrap)return;
-  const posts=(Array.isArray(items)?items:items.items||[]).slice(0,3);
-  if(!posts.length){wrap.innerHTML='<div class="empty-post">CMS에서 새 글을 발행하면 최근 포스팅이 이곳에 자동으로 표시됩니다.</div>';return;}
-  wrap.innerHTML=posts.map(p=>`<a class="post-card" href="${p.url||'#'}">${p.image?`<img src="${p.image}" alt="">`:''}<div><small>${p.date||''}</small><h3>${p.title||'정보 포스팅'}</h3><p>${p.description||''}</p><b>자세히 보기 →</b></div></a>`).join('');
-}).catch(()=>{
-  const wrap=document.getElementById('latestPostGrid'); if(wrap) wrap.innerHTML='<div class="empty-post">최근 포스팅을 불러오지 못했습니다.</div>';
-});
+fetch('/posts-feed.json')
+  .then(r => r.ok ? r.json() : [])
+  .then(data => {
+    const items = Array.isArray(data) ? data : (data.items || []);
+    const wrap = document.getElementById('latestPostGrid');
+    if (!wrap || !items.length) return;
+    wrap.innerHTML = items.slice(0,3).map(p => `
+      <a class="latest-card" href="${p.url || '#'}">
+        ${p.image ? `<img src="${p.image}" alt="">` : ''}
+        <div>
+          <small>${p.date || ''}</small>
+          <h3>${p.title || '정보 포스팅'}</h3>
+          <p>${p.description || ''}</p>
+          <b>자세히 보기 →</b>
+        </div>
+      </a>
+    `).join('');
+  })
+  .catch(() => {});
 </script>
 </body>
 </html>
