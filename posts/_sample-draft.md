@@ -14,7 +14,7 @@ keywords:
   - 재송동 무인자판기 설치
   - 해운대구 자판기 렌탈
 featured_image: https://cdn.phototourl.com/free/2026-09-11-699a0c61-a6d3-45c7-8a10-dd45654b874d.png
-published: false
+published: true
 ---
 ![부산 재송동에서 음료와 간식을 24시간 무인으로 판매하는 냉동 멀티자판기 설치 및 렌탈 운영사례](/images/uploads/상세페이지-이미지-.png "부산 재송동 냉동자판기 설치 렌탈 무인 멀티자판기 운영사례 음료 간식")
 
