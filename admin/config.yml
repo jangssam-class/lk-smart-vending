@@ -41,8 +41,8 @@ collections:
         name: "keywords"
         widget: "list"
         required: false
-        hint: "본문과 실제로 관련된 키워드만 추가하세요."
-           - { label: "대표 이미지", name: "featured_image", widget: "image", required: false }
+        hint: "블로그 실제 글 관련된 키워드만 추가하세요."
+      - { label: "대표 이미지", name: "featured_image", widget: "image", required: false }
       - { label: "대표 이미지 설명(ALT)", name: "image_alt", widget: "string", required: false }
       - { label: "공개 상태", name: "published", widget: "hidden", default: true }
       - { label: "본문", name: "body", widget: "markdown" }
