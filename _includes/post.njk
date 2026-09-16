@@ -14,14 +14,17 @@
   <meta property="og:title" content="{{ title | xmlEscape }}">
   <meta property="og:description" content="{{ description | xmlEscape }}">
   <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-  {% if featured_image %}
-  {% set heroImage = featured_image %}
-  {% if not (heroImage.startsWith("/") or heroImage.startsWith("http://") or heroImage.startsWith("https://")) %}
-    {% set heroImage = "/" + heroImage %}
-  {% endif %}
-  <figure class="post-featured-image">
-    <img src="{{ heroImage }}" alt="{{ image_alt or title }}" loading="eager">
-  </figure>
+ {% if featured_image %}
+{% set heroImage = featured_image %}
+{% if not (heroImage.startsWith("/") or heroImage.startsWith("http://") or heroImage.startsWith("https://")) %}
+  {% set heroImage = "/" + heroImage %}
+{% endif %}
+{% if heroImage.startsWith("http://") or heroImage.startsWith("https://") %}
+<meta property="og:image" content="{{ heroImage }}">
+{% else %}
+<meta property="og:image" content="{{ site.url }}{{ heroImage }}">
+{% endif %}
+<meta property="og:image:alt" content="{{ image_alt or title | xmlEscape }}">
 {% endif %}
   <link rel="stylesheet" href="/style.css">
   <link rel="stylesheet" href="/posts.css">
