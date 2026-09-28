@@ -13,6 +13,12 @@ export default function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({"product-frozen.html": "product-frozen.html"});
   eleventyConfig.addPassthroughCopy({"admin": "admin"});
   eleventyConfig.addPassthroughCopy({"_redirects": "_redirects"});
+  eleventyConfig.addPassthroughCopy({"favicon.ico": "favicon.ico"});
+  eleventyConfig.addPassthroughCopy({"favicon.png": "favicon.png"});
+  eleventyConfig.addPassthroughCopy({"apple-touch-icon.png": "apple-touch-icon.png"});
+  eleventyConfig.addPassthroughCopy({"android-chrome-192x192.png": "android-chrome-192x192.png"});
+  eleventyConfig.addPassthroughCopy({"android-chrome-512x512.png": "android-chrome-512x512.png"});
+  eleventyConfig.addPassthroughCopy({"site.webmanifest": "site.webmanifest"});
 
   eleventyConfig.ignores.add("README.md");
   eleventyConfig.ignores.add("VERSION.txt");
