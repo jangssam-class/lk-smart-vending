@@ -8,7 +8,7 @@ province: 대구
 city: 수성구
 product: 무인자판기
 place: 병원
-featured_image: https://cdn.phototourl.com/free/2026-09-17-3f00fb2a-f77b-48bf-896a-e6343daed0d5.png
+featured_image: /images/uploads/004.png
 published: true
 ---
 ![](/images/uploads/상세페이지-이미지-.png)
