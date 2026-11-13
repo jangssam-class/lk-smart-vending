@@ -53,6 +53,29 @@ export default function(eleventyConfig) {
       .sort((a, b) => new Date(b.data.date || b.date) - new Date(a.data.date || a.date));
   });
 
+  // CMS 발행 글의 장소 + 제품 조합별로 안내 페이지를 하나만 생성합니다.
+  eleventyConfig.addCollection("autoGuides", collectionApi => {
+    const groups = new Map();
+    for (const post of collectionApi.getFilteredByTag("posts")) {
+      if (post.data.published === false) continue;
+      const place = String(post.data.place || "").trim();
+      const product = String(post.data.product || "").trim();
+      if (!place || !product) continue;
+      const key = `${place}::${product}`;
+      if (!groups.has(key)) groups.set(key, { place, product, posts: [] });
+      groups.get(key).posts.push(post);
+    }
+    return [...groups.values()].map(group => ({
+      ...group,
+      url: `/guides/topics/${encodeURIComponent(group.place)}-${encodeURIComponent(group.product)}/`,
+      posts: group.posts.sort((a,b) => new Date(b.data.date || b.date) - new Date(a.data.date || a.date))
+    }));
+  });
+  eleventyConfig.addFilter("autoGuideUrl", (place, product) => {
+    if (!place || !product) return "";
+    return `/guides/topics/${encodeURIComponent(String(place).trim())}-${encodeURIComponent(String(product).trim())}/`;
+  });
+
   return {
     dir: {
       input: ".",

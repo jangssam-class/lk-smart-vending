@@ -15,6 +15,10 @@ eleventyExcludeFromCollections: true
 <url><loc>{{ site.url }}/guides/school/</loc></url>
 <url><loc>{{ site.url }}/guides/office/</loc></url>
 
+{% for guide in collections.autoGuides %}
+<url><loc>{{ site.url }}{{ guide.url | xmlEscape }}</loc></url>
+{% endfor %}
+
 {% for post in collections.publishedPosts %}
 <url>
   <loc>{{ site.url }}{{ post.url }}</loc>
