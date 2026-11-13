@@ -221,3 +221,6 @@
     padding-bottom:105px!important;
   }
 }
+
+/* LK search intent hub */
+.lk-guide-hub{padding:72px max(24px,calc((100vw - 1180px)/2));background:#f5f7fb;color:#172334}.lk-guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}.lk-guide-grid a{display:block;padding:26px 22px;background:#fff;border:1px solid #dce4ef;border-radius:14px;color:#13243d;font-size:19px;font-weight:800;text-decoration:none}.lk-guide-grid a span{display:block;font-size:13px;font-weight:400;margin-top:12px;color:#52657b}.lk-guide-grid a:hover{border-color:#0074cf;box-shadow:0 8px 22px #11224412}.lk-guide-more{margin-top:24px;line-height:1.8}.lk-guide-more a{color:#065ea4}@media(max-width:760px){.lk-guide-grid{grid-template-columns:1fr}.lk-guide-hub{padding:42px 18px}}

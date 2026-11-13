@@ -2,6 +2,7 @@ export default function(eleventyConfig) {
   eleventyConfig.ignores.add("V2.*.md");
   eleventyConfig.ignores.add("V1.9_*.md");
   eleventyConfig.addPassthroughCopy({"index.html": "index.html"});
+  eleventyConfig.addPassthroughCopy({"guides": "guides"});
   eleventyConfig.addPassthroughCopy({"style.css": "style.css"});
   eleventyConfig.addPassthroughCopy({"posts.css": "posts.css"});
   eleventyConfig.addPassthroughCopy({"script.js": "script.js"});

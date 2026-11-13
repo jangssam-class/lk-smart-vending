@@ -1,0 +1,9 @@
+LK Smart Vending 검색 콘텐츠 구조 개선
+
+1. ZIP 안의 파일과 guides 폴더를 GitHub 저장소 최상위에 같은 경로로 업로드/덮어쓰기합니다.
+2. 기존 posts/*.md, 이미지, 문의 연락처, CMS 설정은 변경하지 않습니다.
+3. Netlify Published 확인 후 /guides/fitness/ 등 6개 페이지와 /sitemap.xml을 확인하세요.
+4. 네이버 Search Advisor 및 Google Search Console에 기존 사이트맵을 재확인합니다. 신규 URL은 검색엔진 판단에 따라 색인됩니다.
+5. marketing.html 자동작성기는 새 글에만 반영되며, 기존 발행글을 자동 변경하지 않습니다.
+6. 신규 안내 페이지는 일반 정보 안내이며 실제 설치 사례로 표시하지 않습니다.
+7. 검색 순위 상승/인용/상담 전환은 보장되지 않으며 실제 성과는 검색 콘솔로 검증해야 합니다.

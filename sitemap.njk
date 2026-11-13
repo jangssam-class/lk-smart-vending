@@ -6,6 +6,15 @@ eleventyExcludeFromCollections: true
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>{{ site.url }}/</loc></url>
 <url><loc>{{ site.url }}/posts/</loc></url>
+<url><loc>{{ site.url }}/product-smart.html</loc></url>
+<url><loc>{{ site.url }}/product-frozen.html</loc></url>
+<url><loc>{{ site.url }}/guides/fitness/</loc></url>
+<url><loc>{{ site.url }}/guides/pcbang/</loc></url>
+<url><loc>{{ site.url }}/guides/studycafe/</loc></url>
+<url><loc>{{ site.url }}/guides/petshop/</loc></url>
+<url><loc>{{ site.url }}/guides/school/</loc></url>
+<url><loc>{{ site.url }}/guides/office/</loc></url>
+
 {% for post in collections.publishedPosts %}
 <url>
   <loc>{{ site.url }}{{ post.url }}</loc>
