@@ -84,12 +84,8 @@
 
     <section class="lk-related-guides" style="margin:32px 0;padding:24px;background:#f2f7fb;border-radius:12px;line-height:1.9">
       <h2 style="font-size:21px;margin:0 0 12px">관련 설치 안내</h2>
-      {% if place == "헬스장" %}<a href="/guides/fitness/">헬스장 자판기 설치 가이드 →</a>
-      {% elif place == "병원" %}<a href="/guides/office/">시설 내 자판기 설치 시 공통 체크사항 →</a>
-      {% elif place == "오피스" %}<a href="/guides/office/">오피스 자판기 설치 가이드 →</a>
-      {% elif place == "학교·학원" %}<a href="/guides/school/">학교·학원 자판기 설치 가이드 →</a>
-      {% elif place == "무인매장" %}<a href="/guides/pcbang/">무인·야간 운영 시 확인할 사항 →</a>
-      {% else %}<a href="/guides/fitness/">장소별 설치 안내 살펴보기 →</a>{% endif %}
+      {% if place and product %}<a href="{{ place | autoGuideUrl(product) }}">{{ place }} {{ product }} 상세 설치 안내 →</a>
+      {% else %}<a href="/guides/office/">설치 전 확인사항 →</a>{% endif %}
       <br><a href="/product-smart.html">스마트멀티밴딩머신 제품 정보 →</a>
       <br><a href="/product-frozen.html">냉동자판기 제품 정보 →</a>
     </section>
