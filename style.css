@@ -224,3 +224,24 @@
 
 /* LK search intent hub */
 .lk-guide-hub{padding:72px max(24px,calc((100vw - 1180px)/2));background:#f5f7fb;color:#172334}.lk-guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:26px}.lk-guide-grid a{display:block;padding:26px 22px;background:#fff;border:1px solid #dce4ef;border-radius:14px;color:#13243d;font-size:19px;font-weight:800;text-decoration:none}.lk-guide-grid a span{display:block;font-size:13px;font-weight:400;margin-top:12px;color:#52657b}.lk-guide-grid a:hover{border-color:#0074cf;box-shadow:0 8px 22px #11224412}.lk-guide-more{margin-top:24px;line-height:1.8}.lk-guide-more a{color:#065ea4}@media(max-width:760px){.lk-guide-grid{grid-template-columns:1fr}.lk-guide-hub{padding:42px 18px}}
+
+/* ===== 오늘의자판기 카페 연결 (기존 디자인 유지) ===== */
+.desktop-nav .nav-cafe-link{color:#0d8b69;font-weight:800;white-space:nowrap}
+.desktop-nav .nav-cafe-link:hover{color:#08684e}
+.mobile-nav .nav-cafe-link{color:#0d8b69;font-weight:800}
+.lk-cafe-section{padding:56px max(24px,calc((100vw - 1180px)/2));background:#fff}
+.lk-cafe-panel{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:34px 40px;border-radius:20px;background:linear-gradient(110deg,#eaf8f2 0%,#f4fbf8 65%,#f5f9ff 100%);border:1px solid #cceadd}
+.lk-cafe-copy{min-width:0}
+.lk-cafe-eyebrow{margin:0 0 10px;color:#16845f;font-size:12px;font-weight:900;letter-spacing:.08em}
+.lk-cafe-copy h2{margin:0 0 12px;color:#122b34;font-size:clamp(23px,2.5vw,32px);line-height:1.3;word-break:keep-all}
+.lk-cafe-copy>p:last-child{margin:0;color:#365662;font-size:16px;line-height:1.75;word-break:keep-all}
+.lk-cafe-button{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:50px;padding:13px 23px;border-radius:11px;background:#16845f;color:#fff!important;text-decoration:none;font-size:15px;font-weight:800;white-space:nowrap;transition:background .15s,transform .15s}
+.lk-cafe-button:hover{background:#0b694a;transform:translateY(-1px)}
+.lk-cafe-button:focus-visible,.nav-cafe-link:focus-visible{outline:3px solid #0b815d;outline-offset:3px}
+@media(max-width:760px){
+  .lk-cafe-section{padding:34px 18px}
+  .lk-cafe-panel{flex-direction:column;align-items:stretch;gap:20px;padding:26px 20px;border-radius:16px}
+  .lk-cafe-copy>p:last-child{font-size:15px}
+  .lk-cafe-button{width:100%;min-height:52px}
+  .mobile-nav .nav-cafe-link{display:block}
+}
