@@ -15,7 +15,7 @@ keywords:
   - 서구 멀티자판기
   - 학교·학원 자판기
   - 음료 간식 자판기
-featured_image: /images/uploads/002.png
+featured_image: https://cdn.phototourl.com/anon/2026-11-18-2fd5a1c0-8e8b-40f5-954c-79cf671fa63c.png
 published: true
 ---
 ![](/images/uploads/상세페이지-이미지-.png)
