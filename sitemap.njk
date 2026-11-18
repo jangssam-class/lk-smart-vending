@@ -6,6 +6,10 @@ eleventyExcludeFromCollections: true
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>{{ site.url }}/</loc></url>
 <url><loc>{{ site.url }}/posts/</loc></url>
+<url><loc>{{ site.url }}/regions/</loc></url>
+{% for region in collections.regionHubs %}
+<url><loc>{{ site.url }}{{ region.url | xmlEscape }}</loc></url>
+{% endfor %}
 <url><loc>{{ site.url }}/product-smart.html</loc></url>
 <url><loc>{{ site.url }}/product-frozen.html</loc></url>
 <url><loc>{{ site.url }}/guides/fitness/</loc></url>

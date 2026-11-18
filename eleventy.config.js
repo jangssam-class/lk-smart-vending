@@ -71,6 +71,29 @@ export default function(eleventyConfig) {
       posts: group.posts.sort((a,b) => new Date(b.data.date || b.date) - new Date(a.data.date || a.date))
     }));
   });
+  // 발행된 포스팅이 실제로 존재하는 시·군·구만 지역 허브로 만듭니다.
+  // 빈 지역·동별 대량 페이지는 만들지 않습니다.
+  eleventyConfig.addCollection("regionHubs", collectionApi => {
+    const regions = new Map();
+    for (const post of collectionApi.getFilteredByTag("posts")) {
+      if (post.data.published === false) continue;
+      const province = String(post.data.province || "").trim();
+      const city = String(post.data.city || "").trim();
+      if (!province || !city) continue;
+      const key = `${province}::${city}`;
+      if (!regions.has(key)) regions.set(key, {province, city, posts: []});
+      regions.get(key).posts.push(post);
+    }
+    return [...regions.values()].sort((a,b) => a.province.localeCompare(b.province,'ko') || a.city.localeCompare(b.city,'ko')).map(region => ({
+      ...region,
+      url: `/regions/${encodeURIComponent(region.province)}/${encodeURIComponent(region.city)}/`,
+      posts: region.posts.sort((a,b) => new Date(b.data.date || b.date) - new Date(a.data.date || a.date))
+    }));
+  });
+  eleventyConfig.addFilter("regionHubUrl", (province, city) => {
+    if (!province || !city) return "";
+    return `/regions/${encodeURIComponent(String(province).trim())}/${encodeURIComponent(String(city).trim())}/`;
+  });
   eleventyConfig.addFilter("autoGuideUrl", (place, product) => {
     if (!place || !product) return "";
     return `/guides/topics/${encodeURIComponent(String(place).trim())}-${encodeURIComponent(String(product).trim())}/`;
