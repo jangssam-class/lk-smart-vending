@@ -82,6 +82,12 @@
     </div>
 
 
+    {% if province and city %}
+    <section class="lk-region-link" style="margin:28px 0;padding:18px 24px;border:1px solid #d9e8f5;border-radius:12px;background:#fff">
+      <h2 style="font-size:20px;margin:0 0 6px">지역별 자판기 정보</h2>
+      <a href="{{ province | regionHubUrl(city) }}">{{ province }} {{ city }} 관련 설치·렌탈 포스팅 모아보기 →</a>
+    </section>
+    {% endif %}
     <section class="lk-related-guides" style="margin:32px 0;padding:24px;background:#f2f7fb;border-radius:12px;line-height:1.9">
       <h2 style="font-size:21px;margin:0 0 12px">관련 설치 안내</h2>
       {% if place and product %}<a href="{{ place | autoGuideUrl(product) }}">{{ place }} {{ product }} 상세 설치 안내 →</a>
