@@ -79,7 +79,19 @@ const typeSections={
 '운영 정보형':[['이용자와 판매 시간 파악',common],['품목 구성과 보충 계획',sectionA],['결제·재고·장애 대응',operations],['기기 사양과 설치 조건',`${productInfo}\n\n${siteCheck}`],['운영 비용 점검',rental]]};
 const sections=typeSections[v.type]||typeSections['설치 안내형'];
 const faq=[['설치 가능 여부는 어떻게 확인하나요?',`기기 규격과 ${site}의 전기·통신·통행 조건, 시설 관리자의 승인 여부를 확인한 뒤 판단할 수 있습니다.`],['어떤 상품부터 판매하는 것이 좋나요?',`${v.use} 중 실제 이용자가 자주 찾는 품목을 먼저 선정하고 포장·보관 조건을 점검해 보세요.`],['구매와 렌탈 중 어느 쪽이 유리한가요?','초기 비용뿐 아니라 계약 기간, 월 납부액, 유지보수 및 철거 비용까지 포함한 총비용을 비교해야 합니다.'],['문의 전에 무엇을 준비하면 되나요?',`설치 장소 사진, 가용 공간 크기, 판매할 상품 목록, 희망 운영 시간과 ${site} 담당자 확인 사항을 준비하면 좋습니다.`]];
-return [opening,...sections.map(([h,t])=>`${h}\n\n${t}`),'자주 묻는 질문',...faq.map(([q,answer])=>`${q}\n${answer}`),`정리하면 ${a} ${site}의 ${product} 도입은 판매 상품과 설치 환경을 먼저 확인하는 것에서 시작합니다. LK 스마트밴딩머신 홈페이지에서 제품 정보를 살펴보고 설치·구매·렌탈 관련 문의를 접수할 수 있습니다. 실제 기종별 지원 기능과 계약 조건은 별도 확인이 필요합니다.`].join('\n\n').replace(/\*\*|^#{1,6}\s*/gm,'');
+const table=(headers,rows)=>`<div class="lk-post-table-wrap"><table class="lk-post-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(cell=>`<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+const placement=table(['설치 위치','운영 시 장점','사전 확인사항'],[
+ [`${site} 휴게 공간`,'이용자가 머무는 시간에 접근하기 편리','통행 동선, 전원, 소음 및 관리 승인'],
+ ['출입구 인근','방문객이 발견하기 쉬움','반입 경로, 안전 기준, 날씨 영향'],
+ ['공용 로비','여러 이용자가 접근 가능','시설 관리자 승인, 전기료·보충 책임']]);
+const costs=table(['비교 항목','구매','렌탈·대여'],[
+ ['초기 비용','일시불 또는 할부 조건 확인','보증금과 월 납부액 확인'],
+ ['운영 기간','유지보수·소유 비용 확인','약정 기간과 총 납부액 확인'],
+ ['계약 종료','기기 소유권과 처분 방식 확인','반납·인수·철거 조건 확인'],
+ ['A/S','제조사·판매처의 보증 범위 확인','계약서의 관리 범위 확인']]);
+const steps=`### 설치 전 확인 순서\n\n1. 설치 장소 사진과 반입 경로를 확인합니다.\n2. 판매 상품의 크기와 보관 온도를 정합니다.\n3. 기기 사양과 결제·관리 방식을 비교합니다.\n4. 계약 조건과 설치 가능 여부를 담당자에게 확인합니다.`;
+const related=`## 함께 확인하면 좋은 안내\n\n- [스마트 멀티자판기 제품 안내](/product-smart)\n- [냉동자판기 제품 안내](/product-frozen)\n- [전체 포스팅 보기](/posts/)`;
+return [opening,...sections.map(([h,t])=>`## ${h}\n\n${t}`),`## ${site} 자판기 설치 위치 비교\n\n${placement}`,`## 구매와 렌탈 조건 비교\n\n${costs}`,`## 설치 진행 순서\n\n${steps}`,`## 자주 묻는 질문`,...faq.map(([q,answer])=>`### ${q}\n\n${answer}`),related,`## 마무리\n\n${a} ${site}의 ${product} 도입은 판매 상품과 설치 환경을 먼저 확인하는 것에서 시작합니다. 실제 설치 가능 여부, 기종별 지원 기능과 계약 조건은 상담 시 확인해야 합니다. 이 글은 일반적인 설치 검토 정보이며 해당 지역의 실제 설치 실적을 의미하지 않습니다.`].join('\n\n');
 }
 function generate(){const v=data(),ts=candidates(v),previous=el('lk-title').value;opt(el('lk-title'),ts);if(titleTouched&&ts.includes(previous))el('lk-title').value=previous;const kws=keywords(v);el('lk-tags').replaceChildren(...kws.map(k=>{const s=document.createElement('span');s.textContent=k;return s}));el('lk-draft').value=draft(v);el('lk-count').textContent=el('lk-draft').value.length+'자'}
 function slug(v){const pm={서울:'seoul',부산:'busan',대구:'daegu',인천:'incheon',광주:'gwangju',대전:'daejeon',울산:'ulsan',세종:'sejong',경기:'gyeonggi',강원:'gangwon',충북:'chungbuk',충남:'chungnam',전북:'jeonbuk',전남:'jeonnam',경북:'gyeongbuk',경남:'gyeongnam',제주:'jeju'};const L=['g','kk','n','d','tt','r','m','b','pp','s','ss','','j','jj','ch','k','t','p','h'],V=['a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i'],T=['','k','k','ks','n','nj','nh','t','l','lk','lm','lb','ls','lt','lp','lh','m','p','ps','t','t','ng','t','t','k','t','p','h'];function roman(s){return [...s].map(c=>{const n=c.charCodeAt(0)-44032;if(n<0||n>11171)return /[a-zA-Z0-9]/.test(c)?c:'-';return L[Math.floor(n/588)]+V[Math.floor(n%588/28)]+T[n%28]}).join('').replace(/-+/g,'-').replace(/^-|-$/g,'').toLowerCase()}const product={냉동자판기:'frozen',무인자판기:'unmanned',멀티자판기:'multi',스마트자판기:'smart',무인판매기:'retail'};return [pm[v.province],roman(v.city),roman(v.district),product[v.product],roman(v.place)].filter(Boolean).join('-')}
