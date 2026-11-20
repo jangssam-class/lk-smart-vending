@@ -402,3 +402,10 @@ article img,
 .post-body .lk-post-table tr:nth-child(even) td{background:#f8fbff}
 .post-body .lk-post-table tbody tr:last-child td{border-bottom:0}
 @media(max-width:650px){.post-body .lk-post-table{font-size:14px;min-width:520px}}
+
+/* 2026-11-20: Markdown comparison tables, readable on desktop and mobile */
+.post-body table{width:100%;border-collapse:collapse;table-layout:fixed;margin:24px 0 32px;font-size:15px;line-height:1.7;border:1px solid #d9e5f2}
+.post-body th,.post-body td{padding:13px 14px;text-align:left;vertical-align:top;overflow-wrap:anywhere;word-break:keep-all;border:1px solid #d9e5f2}
+.post-body th{background:#eaf3ff;color:#193b64;font-weight:800}
+.post-body tbody tr:nth-child(even){background:#f8fbff}
+@media(max-width:650px){.post-body table{font-size:13px}.post-body th,.post-body td{padding:9px 7px}}
