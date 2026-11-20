@@ -95,9 +95,100 @@ return [opening,...sections.map(([h,t])=>`## ${h}\n\n${t}`),`## ${site} 자판�
 }
 function generate(){const v=data(),ts=candidates(v),previous=el('lk-title').value;opt(el('lk-title'),ts);if(titleTouched&&ts.includes(previous))el('lk-title').value=previous;const kws=keywords(v);el('lk-tags').replaceChildren(...kws.map(k=>{const s=document.createElement('span');s.textContent=k;return s}));el('lk-draft').value=draft(v);el('lk-count').textContent=el('lk-draft').value.length+'자'}
 function slug(v){const pm={서울:'seoul',부산:'busan',대구:'daegu',인천:'incheon',광주:'gwangju',대전:'daejeon',울산:'ulsan',세종:'sejong',경기:'gyeonggi',강원:'gangwon',충북:'chungbuk',충남:'chungnam',전북:'jeonbuk',전남:'jeonnam',경북:'gyeongbuk',경남:'gyeongnam',제주:'jeju'};const L=['g','kk','n','d','tt','r','m','b','pp','s','ss','','j','jj','ch','k','t','p','h'],V=['a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i'],T=['','k','k','ks','n','nj','nh','t','l','lk','lm','lb','ls','lt','lp','lh','m','p','ps','t','t','ng','t','t','k','t','p','h'];function roman(s){return [...s].map(c=>{const n=c.charCodeAt(0)-44032;if(n<0||n>11171)return /[a-zA-Z0-9]/.test(c)?c:'-';return L[Math.floor(n/588)]+V[Math.floor(n%588/28)]+T[n%28]}).join('').replace(/-+/g,'-').replace(/^-|-$/g,'').toLowerCase()}const product={냉동자판기:'frozen',무인자판기:'unmanned',멀티자판기:'multi',스마트자판기:'smart',무인판매기:'retail'};return [pm[v.province],roman(v.city),roman(v.district),product[v.product],roman(v.place)].filter(Boolean).join('-')}
-function locate(name,label){const root=document.querySelector('[class*="EditorControlPane"], [class*="EditorControl"], main')||document;let node=document.querySelector(`[id="${name}-field"]`);if(node)return node;node=document.querySelector(`[name="${name}"]`);if(node)return node;const labels=[...document.querySelectorAll('label')];const lab=labels.find(x=>x.textContent.trim().startsWith(label));if(lab){const id=lab.getAttribute('for');if(id){node=document.getElementById(id);if(node)return node}const container=lab.closest('[class*="ControlContainer"], [class*="Control"], [class*="Field"]')||lab.parentElement;node=container?.querySelector('input,textarea,[role="textbox"],select');if(node)return node}return null}
-function setInput(node,value){if(!node)return false;if(node.matches('input,textarea')){const proto=node.tagName==='TEXTAREA'?HTMLTextAreaElement.prototype:HTMLInputElement.prototype;const setter=Object.getOwnPropertyDescriptor(proto,'value')?.set;if(setter)setter.call(node,String(value));else node.value=String(value);node.dispatchEvent(new Event('input',{bubbles:true}));node.dispatchEvent(new Event('change',{bubbles:true}));return true}if(node.tagName==='SELECT'){node.value=value;node.dispatchEvent(new Event('change',{bubbles:true}));return true}return false}
-function fill(){const v=data(),body=el('lk-draft').value,description=`${v.area} ${v.place}에서 ${v.product} 설치와 렌탈을 검토할 때 필요한 상품 구성, 설치 환경, 계약 및 운영 관리 사항을 안내합니다.`,fields=[['title','포스팅 제목',el('lk-title').value],['slug_id','URL ID',slug(v)],['description','검색결과 설명문',description],['province','시·도',v.province],['city','시·군·구',v.city],['district','읍·면·동',v.district],['product','제품 키워드',v.product],['place','설치 공간',v.place],['body','본문',body]];const ok=[],missing=[];for(const [name,label,value] of fields){const node=locate(name,label);if(setInput(node,value))ok.push(label);else missing.push(label)}const keywordsNode=locate('keywords','연관 키워드');if(keywordsNode&&keywordsNode.matches('textarea,input'))setInput(keywordsNode,keywords(v).join(', '));else missing.push('연관 키워드(수동 입력)');const status=el('lk-status');status.textContent=`자동 입력 ${ok.length}개 항목. ${missing.length?'확인 필요: '+missing.join(', '):'모든 주요 입력란에 반영했습니다.'} 발행 전에 오른쪽 미리보기와 필드값을 확인하세요.`;status.style.color=missing.length?'#a24a10':'#087b43';}
+function fieldContainer(name,label){
+ const byId=document.querySelector(`[id="${name}-field"]`);
+ if(byId)return byId.closest('[class*="ControlContainer"], [class*="Field"]')||byId.parentElement;
+ const labels=[...document.querySelectorAll('label')].filter(x=>!box.contains(x));
+ const lab=labels.find(x=>x.textContent.replace(/\s+/g,' ').trim().startsWith(label));
+ if(!lab)return null;
+ return lab.closest('[class*="ControlContainer"], [class*="Field"]')||lab.parentElement?.parentElement||lab.parentElement;
+}
+function locate(name,label){
+ const direct=document.querySelector(`[id="${name}-field"], [name="${name}"]`);
+ if(direct&&!box.contains(direct))return direct;
+ const container=fieldContainer(name,label);
+ if(!container)return null;
+ return container.querySelector('input:not([type="hidden"]),textarea,select,[contenteditable="true"],[role="textbox"]');
+}
+function setInput(node,value){
+ if(!node)return false;
+ if(node.matches('input,textarea')){
+  const proto=node.tagName==='TEXTAREA'?HTMLTextAreaElement.prototype:HTMLInputElement.prototype;
+  const setter=Object.getOwnPropertyDescriptor(proto,'value')?.set;
+  if(setter)setter.call(node,String(value));else node.value=String(value);
+  node.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'insertText',data:String(value)}));
+  node.dispatchEvent(new Event('change',{bubbles:true}));return true;
+ }
+ if(node.tagName==='SELECT'){
+  node.value=value;node.dispatchEvent(new Event('change',{bubbles:true}));return node.value===value;
+ }
+ if(node.isContentEditable){node.focus();node.textContent=String(value);node.dispatchEvent(new InputEvent('input',{bubbles:true,inputType:'insertText',data:String(value)}));node.dispatchEvent(new Event('blur',{bubbles:true}));return true}
+ return false;
+}
+const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
+function markDownMode(){
+ const c=fieldContainer('body','본문');if(!c)return;
+ const switches=[...c.querySelectorAll('button,[role="switch"],input[type="checkbox"]')];
+ const toggle=switches.find(x=>/마크다운|markdown/i.test(x.textContent||x.getAttribute('aria-label')||''));
+ if(toggle)toggle.click();
+}
+async function fillBody(body){
+ const c=fieldContainer('body','본문');if(!c)return false;
+ let node=locate('body','본문');
+ if(node?.matches('textarea'))return setInput(node,body);
+ // Decap markdown widget uses a rich-text editor by default. Switch to Markdown mode.
+ const buttons=[...c.querySelectorAll('button,[role="button"],label')];
+ const md=buttons.find(x=>/^(마크다운|Markdown)$/i.test(x.textContent.trim()));
+ if(md){md.click();await pause(180)}
+ node=c.querySelector('textarea')||locate('body','본문');
+ return node?.matches('textarea')?setInput(node,body):false;
+}
+async function fillKeywords(values){
+ const c=fieldContainer('keywords','연관 키워드');if(!c)return false;
+ let items=values.filter(Boolean);
+ // Decap list widgets have one input per item, not a comma-separated textarea.
+ let inputs=[...c.querySelectorAll('input:not([type="hidden"]),textarea')];
+ if(!inputs.length){const add=[...c.querySelectorAll('button')].find(x=>/추가|add|\+/i.test(x.textContent+' '+(x.getAttribute('aria-label')||'')));if(add){add.click();await pause(130)}}
+ for(let i=0;i<items.length;i++){
+  inputs=[...c.querySelectorAll('input:not([type="hidden"]),textarea')];
+  if(!inputs[i]){const add=[...c.querySelectorAll('button')].find(x=>/추가|add|\+/i.test(x.textContent+' '+(x.getAttribute('aria-label')||'')));if(!add)return false;add.click();await pause(130);inputs=[...c.querySelectorAll('input:not([type="hidden"]),textarea')]}
+  if(!inputs[i]||!setInput(inputs[i],items[i]))return false;
+ }
+ return true;
+}
+function localDate(){const d=new Date();const offset=d.getTimezoneOffset()*60000;return new Date(d.getTime()-offset).toISOString().slice(0,16)}
+async function fillDate(name,label){
+ const c=fieldContainer(name,label);if(!c)return false;
+ const dateInput=c.querySelector('input[type="datetime-local"],input[type="date"]');
+ if(dateInput)return setInput(dateInput,dateInput.type==='date'?localDate().slice(0,10):localDate());
+ const button=[...c.querySelectorAll('button')].find(x=>/현재시간/.test(x.textContent));
+ if(button){button.click();await pause(100);return true}
+ return false;
+}
+async function fill(){
+ const status=el('lk-status');const button=el('lk-fill');button.disabled=true;
+ status.textContent='CMS 입력란을 확인하고 있습니다…';
+ try{
+ const v=data(),body=el('lk-draft').value;
+ const description=`${v.area} ${v.place}에서 ${v.product} 설치와 렌탈을 검토할 때 필요한 상품 구성, 설치 환경, 계약 및 운영 관리 사항을 안내합니다.`;
+ const fields=[['title','포스팅 제목',el('lk-title').value],['slug_id','URL ID',slug(v)],['description','검색결과 설명문',description],['province','시·도',v.province],['city','시·군·구',v.city],['district','읍·면·동',v.district],['product','제품 키워드',v.product],['place','설치 공간',v.place]];
+ const ok=[],missing=[];
+ for(const [name,label,value] of fields){
+  if(name==='district'&&!value)continue;
+  const node=locate(name,label);
+  if(setInput(node,value))ok.push(label);else missing.push(label);
+  await pause(65);
+ }
+ if(await fillDate('date','발행일'))ok.push('발행일');else missing.push('발행일');
+ if(await fillDate('updated','수정일'))ok.push('수정일');else missing.push('수정일');
+ if(await fillKeywords(keywords(v)))ok.push('연관 키워드');else missing.push('연관 키워드');
+ if(await fillBody(body))ok.push('본문');else missing.push('본문');
+ // Optional image fields are never invented. Preserve existing images.
+ status.textContent=`입력 시도 ${ok.length}개: ${ok.join(', ')}. ${missing.length?'수동 확인 필요: '+missing.join(', ')+'. ':''}대표 이미지·ALT는 기존 값을 유지하거나 직접 선택하세요. 저장 전 모든 필드와 본문을 반드시 확인하세요.`;
+ status.style.color=missing.length?'#a24a10':'#087b43';
+ }catch(e){status.textContent='자동 입력 중 오류: '+e.message+' — 저장하지 말고 입력란을 확인하세요.';status.style.color='#a24a10'}
+ finally{button.disabled=false}
+}
 for(const id of ['lk-province','lk-city','lk-district','lk-district-manual','lk-product','lk-place','lk-use','lk-type','lk-extra'])el(id).addEventListener(id==='lk-district-manual'||id==='lk-extra'?'input':'change',id==='lk-province'?cities:id==='lk-city'?districts:generate);
 el('lk-title').addEventListener('change',()=>titleTouched=true);el('lk-draft').addEventListener('input',()=>el('lk-count').textContent=el('lk-draft').value.length+'자');el('lk-fill').addEventListener('click',fill);el('lk-copy').addEventListener('click',()=>navigator.clipboard.writeText(el('lk-draft').value).then(()=>el('lk-status').textContent='본문을 복사했습니다.').catch(()=>el('lk-status').textContent='복사 권한을 확인해 주세요.'));el('lk-toggle').addEventListener('click',()=>{box.classList.toggle('lk-collapsed');el('lk-toggle').setAttribute('aria-expanded', !box.classList.contains('lk-collapsed'));});cities();
 })();
