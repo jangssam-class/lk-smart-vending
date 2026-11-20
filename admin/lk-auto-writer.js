@@ -23,7 +23,7 @@ const productNames=['냉동자판기','무인자판기','멀티자판기','스�
 const places=['오피스','병원','헬스장','학교·학원','공장','호텔·숙박','아파트','무인매장','PC방','스터디카페','애견샵','기타 시설'];
 const uses=['음료 간식','간편식','생활용품','위생용품','캐릭터 굿즈','맞춤상품'];
 const box=document.createElement('section');box.id='lk-helper';
-box.innerHTML=`<button type="button" id="lk-toggle" aria-expanded="true">✦ LK 포스팅 자동작성 <span>접기 ▴</span></button><div id="lk-content"><p class="lk-note">지역·상품·설치 장소를 선택하세요. 읍·면·동은 대표 지역 목록에서 선택하거나 직접 입력할 수 있습니다.</p><div class="lk-grid"><label>시·도<select id="lk-province"></select></label><label>시·군·구<select id="lk-city"></select></label><label>읍·면·동<select id="lk-district"><option value="">선택 안 함</option></select><input id="lk-district-manual" placeholder="목록에 없으면 직접 입력" aria-label="읍면동 직접 입력"></label><label>제품<select id="lk-product"></select></label><label>설치 장소<select id="lk-place"></select></label><label>판매 상품<select id="lk-use"></select></label><label>글 유형<select id="lk-type"><option>설치 안내형</option><option>렌탈 비교형</option><option>운영 정보형</option></select></label></div><div class="lk-keywords"><strong>추천 검색 키워드</strong><div id="lk-tags"></div><label>직접 추가할 키워드<input id="lk-extra" placeholder="예: 월성동 자판기 렌탈"></label></div><label class="lk-full">추천 제목<select id="lk-title"></select></label><div class="lk-preview"><strong>자동작성 본문 미리보기 <small id="lk-count"></small></strong><textarea id="lk-draft" spellcheck="false"></textarea></div><div class="lk-buttons"><button type="button" id="lk-fill">✦ CMS 입력란 자동 채우기</button><button type="button" id="lk-copy">본문 복사</button></div><p id="lk-status" role="status" aria-live="polite">검색량·상위노출은 보장되지 않습니다. 현장 조건과 제품 지원 기능을 확인하고 발행하세요.</p></div>`;
+box.innerHTML=`<button type="button" id="lk-toggle" aria-expanded="true">✦ LK 포스팅 자동작성 <span>접기 ▴</span></button><div id="lk-content"><p class="lk-note">지역·상품·설치 장소를 선택하세요. 읍·면·동은 대표 지역 목록에서 선택하거나 직접 입력할 수 있습니다.</p><label class="lk-full">포스팅 구분<select id="lk-mode"><option value="regional">지역별 설치 안내</option><option value="info">정보성 포스팅</option></select></label><div id="lk-info-options" style="display:none"><label>정보성 카테고리<select id="lk-category"><option>자판기 창업 정보</option><option>구매·렌탈 비교</option><option>자판기 운영 관리</option><option>제품별 정보</option><option>설치 준비 가이드</option></select></label><label>상세 주제<select id="lk-topic"></select></label></div><div id="lk-regional-options"><div class="lk-grid"><label>시·도<select id="lk-province"></select></label><label>시·군·구<select id="lk-city"></select></label><label>읍·면·동<select id="lk-district"><option value="">선택 안 함</option></select><input id="lk-district-manual" placeholder="목록에 없으면 직접 입력" aria-label="읍면동 직접 입력"></label><label>제품<select id="lk-product"></select></label><label>설치 장소<select id="lk-place"></select></label><label>판매 상품<select id="lk-use"></select></label><label>글 유형<select id="lk-type"><option>설치 안내형</option><option>렌탈 비교형</option><option>운영 정보형</option></select></label></div></div><div class="lk-keywords"><strong>추천 검색 키워드</strong><div id="lk-tags"></div><label>직접 추가할 키워드<input id="lk-extra" placeholder="예: 월성동 자판기 렌탈"></label></div><label class="lk-full">추천 제목<select id="lk-title"></select></label><div class="lk-preview"><strong>자동작성 본문 미리보기 <small id="lk-count"></small></strong><textarea id="lk-draft" spellcheck="false"></textarea></div><div class="lk-buttons"><button type="button" id="lk-fill">✦ CMS 입력란 자동 채우기</button><button type="button" id="lk-copy">본문 복사</button></div><p id="lk-status" role="status" aria-live="polite">검색량·상위노출은 보장되지 않습니다. 현장 조건과 제품 지원 기능을 확인하고 발행하세요.</p></div>`;
 const style=document.createElement('style');style.textContent=`#lk-helper{position:relative;z-index:1;width:100%;max-width:100%;margin:0 0 18px;padding:0;background:#f2f7ff;color:#14243d;border:2px solid #3278ff;border-radius:12px;box-shadow:none;font:13px/1.55 system-ui,'Malgun Gothic',sans-serif}#lk-helper *{box-sizing:border-box}#lk-toggle{display:flex;justify-content:space-between;width:100%;padding:13px 16px;background:#1869e8;color:#fff;font-size:16px;font-weight:800;border:0;cursor:pointer}#lk-content{padding:14px}#lk-helper .lk-note{margin:0 0 12px;color:#4b607b}#lk-helper .lk-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}#lk-helper label{display:block;font-weight:700;min-width:0}#lk-helper select,#lk-helper input,#lk-helper textarea{display:block;width:100%;margin-top:4px;padding:8px;border:1px solid #b9c7d8;border-radius:6px;background:#fff;color:#17253c;font:inherit}#lk-helper #lk-district-manual{margin-top:6px}#lk-helper .lk-full,#lk-helper .lk-keywords,#lk-helper .lk-preview{display:block;margin-top:12px}#lk-tags{display:flex;flex-wrap:wrap;gap:5px;margin:7px 0}#lk-tags span{padding:3px 6px;border:1px solid #d7a05e;background:#fff7e9;border-radius:20px;font-size:11px}#lk-draft{height:190px;resize:vertical;line-height:1.7}#lk-helper .lk-buttons{display:flex;gap:7px;margin-top:10px}#lk-helper .lk-buttons button{padding:10px;border:1px solid #1768e8;background:#fff;color:#1454ac;border-radius:6px;font-weight:800;cursor:pointer}#lk-fill{flex:1;background:#1768e8!important;color:white!important}#lk-status{margin:9px 0 0;color:#39536c}#lk-helper.lk-collapsed #lk-content{display:none}@media(max-width:800px){#lk-helper .lk-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:480px){#lk-helper .lk-grid{grid-template-columns:1fr}#lk-helper .lk-buttons{flex-wrap:wrap}}`;
 document.head.append(style);
 function mount(){
@@ -48,7 +48,40 @@ opt(el('lk-province'),Object.keys(R));opt(el('lk-product'),productNames);opt(el(
 function districts(){const key=el('lk-province').value+'|'+el('lk-city').value;opt(el('lk-district'),['',...(LOCALITIES[key]||[])]);el('lk-district').options[0].text='선택 안 함 / 직접 입력';generate()}
 function cities(){opt(el('lk-city'),R[el('lk-province').value]||[]);districts()}
 function data(){let province=el('lk-province').value,city=el('lk-city').value,district=(el('lk-district-manual').value.trim()||el('lk-district').value.trim()),product=el('lk-product').value,place=el('lk-place').value,use=el('lk-use').value,type=el('lk-type').value;let area=[province,city,district].filter(Boolean).join(' ');return {province,city,district,product,place,use,type,area}}
-function candidates(v){const a=v.area,p=v.product,l=v.place;return [...new Set([`${a} ${p} 설치, ${l} 운영 전에 확인할 사항`,`${a} ${p} 렌탈과 구매, 비용 비교 기준`,`${a} ${l} 자판기 운영, ${v.use} 판매 준비`,`${a} ${p} 도입 시 설치 환경과 관리 방법`])].map(t=>t.slice(0,65))}
+const INFO_TOPICS={
+'자판기 창업 정보':['무인자판기 창업 전 비용과 운영 구조','무인자판기 창업 장소 선정과 수요 조사','자판기 창업 시 계약 전에 확인할 사항'],
+'구매·렌탈 비교':['자판기 구매와 렌탈 총비용 비교','냉동자판기 렌탈 계약 전 확인사항','무인자판기 구매 후 유지보수 비용'],
+'자판기 운영 관리':['자판기 상품 보충 주기와 재고 관리','무인자판기 결제 오류와 고객 응대','자판기 매출 관리와 판매 상품 조정'],
+'제품별 정보':['냉동자판기와 냉장자판기 차이','멀티자판기 상품 구성과 출고 방식','스마트자판기 원격 관리 기능 확인'],
+'설치 준비 가이드':['자판기 설치 전 전기와 통신 점검','자판기 설치 공간과 반입 경로 확인','자판기 설치 장소별 운영 체크리스트']};
+const isInfo=()=>el('lk-mode').value==='info';
+function updateTopics(){opt(el('lk-topic'),INFO_TOPICS[el('lk-category').value]||[]);generate()}
+function infoDraft(v){
+ const topic=el('lk-topic').value,cat=el('lk-category').value,product=v.product;
+ const isRental=/렌탈|구매|계약|비용/.test(topic);
+ const isOperation=/운영|보충|재고|매출|결제|응대/.test(topic);
+ const isInstall=/설치|공간|전기|통신|반입/.test(topic);
+ const opening=`${topic}을 알아볼 때는 기기 가격이나 기능 한 가지만 비교하기보다 판매 상품, 이용 환경, 계약 조건과 운영 책임을 함께 확인해야 합니다. 이 글에서는 ${cat}을 검토하는 분들이 실제로 점검할 내용을 정리합니다. 개별 업체의 견적과 기종 사양은 다를 수 있으므로 최종 결정 전에 확인이 필요합니다.`;
+ const sections=[
+ ['먼저 결정해야 할 기준',`판매하려는 상품의 크기와 보관 조건, 이용자 수, 예상 구매 시간대를 정리하세요. 특히 ${product}를 검토한다면 해당 기기의 실제 온도 범위와 출고 방식이 판매 품목에 적합한지 확인해야 합니다. 예상 매출을 확정하기 어려운 경우에는 임의의 수익률을 가정하기보다 보수적인 판매량으로 계산하는 편이 안전합니다.`],
+ ['비용과 계약 조건',`구매는 초기 지출과 소유권을 확인해야 하고, 렌탈은 월 납부액뿐 아니라 약정 기간과 총 납부액, 중도 해지 및 철거 조건까지 비교해야 합니다. 결제 수수료와 유지보수 범위, 소모품 부담 주체도 계약서에서 확인하세요. 공개된 견적 없이 구체적인 비용을 단정할 수는 없습니다.`],
+ ['설치 환경과 기기 선택',`설치 장소의 폭·깊이·높이, 출입문과 엘리베이터 반입 경로, 전원·통신·환기 조건을 먼저 점검하세요. 냉장·냉동이 필요한 상품은 적정 보관 온도와 온도 이탈 시 대응 방법도 확인해야 합니다. 시설 관리자의 승인이 필요한 공간이라면 계약 전 협의하는 것이 좋습니다.`],
+ ['운영 관리와 고객 대응',`상품 보충 담당자와 주기, 유통기한 확인 방법, 결제 실패·출고 오류 시 고객 연락 경로를 정해 두세요. 원격 관리나 재고 알림은 모든 기기에서 동일하게 제공되는 기능이 아니므로 모델별 지원 여부를 확인해야 합니다.`]
+ ];
+ if(isOperation)sections[0][1]+=' 판매 시간대별 수요와 품절 빈도를 기록하고 판매가 적은 품목은 정기적으로 조정하세요.';
+ if(isInstall)sections[2][1]+=' 설치 위치가 통행을 방해하거나 피난 동선에 영향을 주지 않는지도 점검해야 합니다.';
+ if(isRental)sections[1][1]+=' 같은 기간을 기준으로 구매 총비용과 렌탈 총비용을 나란히 계산해야 비교가 가능합니다.';
+ const table=`<div class="lk-post-table-wrap"><table class="lk-post-table"><thead><tr><th>점검 항목</th><th>확인할 내용</th></tr></thead><tbody><tr><td>상품</td><td>규격, 보관 온도, 보충 주기</td></tr><tr><td>설치</td><td>공간, 전기, 통신, 반입 경로</td></tr><tr><td>비용</td><td>초기 비용, 총 납부액, 수수료</td></tr><tr><td>관리</td><td>A/S, 재고 보충, 오류 대응</td></tr></tbody></table></div>`;
+ const faq=[['구매와 렌탈 중 어떤 방식이 적합한가요?','예상 운영 기간과 초기 예산, 유지보수 범위, 계약 종료 조건을 같은 기준으로 비교해야 합니다.'],['설치 전에 무엇을 준비해야 하나요?','설치 장소 사진과 공간 크기, 전원·통신 조건, 판매 상품 목록을 준비하면 검토에 도움이 됩니다.'],['판매 상품은 어떻게 정해야 하나요?','이용자의 구매 목적과 보관 조건을 기준으로 소수 품목부터 검토하고 실제 판매 결과에 따라 조정하세요.'],['원격 재고 관리가 가능한가요?','기기별 지원 기능이 다르므로 선택한 모델의 사양과 통신 조건을 확인해야 합니다.']];
+ return [opening,...sections.map(([h,t])=>`${h}\n\n${t}`),`실무 점검표\n\n${table}`,'자주 묻는 질문',...faq.map(([q,a])=>`${q}\n\n${a}`),'관련 제품 정보\n\n스마트 멀티자판기: /product-smart\n냉동자판기: /product-frozen','마무리\n\n'+topic+'을 검토할 때는 상품 적합성, 설치 조건, 계약 범위와 운영 책임을 함께 확인하는 것이 중요합니다. 실제 비용과 지원 기능은 기종 및 계약에 따라 달라집니다.'].join('\n\n');
+}
+function candidates(v){
+ const a=v.area,p=v.product,l=v.place;
+ const angle=v.type==='렌탈 비교형'?'렌탈과 구매 조건 비교':v.type==='운영 정보형'?'상품 구성과 운영 관리':'설치 전 확인사항';
+ const byPlace={'오피스':'직원 이용 동선과 상품 구성','병원':'대기 공간과 설치 조건','헬스장':'운동 전후 상품 구성','학교·학원':'이용 시간과 설치 기준','공장':'교대근무와 휴게 공간','호텔·숙박':'투숙객 이용 동선','아파트':'공용 공간 설치 조건','무인매장':'결제와 재고 관리','기타 시설':'공간별 설치 조건'};
+ const titles=[`${a} ${l} ${p} 설치, ${angle}`,`${a} ${p} 도입, ${byPlace[l]||'설치 조건'} 확인하기`,`${a} ${l} ${p}, 구매·렌탈 전 점검할 내용`,`${a} ${p} 설치 안내, ${l} 운영 준비`];
+ return [...new Set(titles)].map(t=>t.slice(0,65));
+}
 function keywords(v){return [...new Set([`${v.area} ${v.product}`,`${v.area} 자판기 설치`,`${v.city} ${v.product}`,`${v.place} 자판기`,`${v.use} 자판기`,el('lk-extra').value.trim()].filter(Boolean))]}
 const CONTEXT={
 '오피스':['점심시간과 오후 휴식 시간에 수요가 몰릴 수 있으므로 실제 근무 인원과 외부 방문객 수를 구분해 파악하세요.','직원 복지용 무료 제공인지 개인 결제 방식인지에 따라 결제 설정과 정산 방식이 달라집니다.'],
@@ -79,9 +112,7 @@ const typeSections={
 '운영 정보형':[['이용자와 판매 시간 파악',common],['품목 구성과 보충 계획',sectionA],['결제·재고·장애 대응',operations],['기기 사양과 설치 조건',`${productInfo}\n\n${siteCheck}`],['운영 비용 점검',rental]]};
 const sections=typeSections[v.type]||typeSections['설치 안내형'];
 const faq=[['설치 가능 여부는 어떻게 확인하나요?',`기기 규격과 ${site}의 전기·통신·통행 조건, 시설 관리자의 승인 여부를 확인한 뒤 판단할 수 있습니다.`],['어떤 상품부터 판매하는 것이 좋나요?',`${v.use} 중 실제 이용자가 자주 찾는 품목을 먼저 선정하고 포장·보관 조건을 점검해 보세요.`],['구매와 렌탈 중 어느 쪽이 유리한가요?','초기 비용뿐 아니라 계약 기간, 월 납부액, 유지보수 및 철거 비용까지 포함한 총비용을 비교해야 합니다.'],['문의 전에 무엇을 준비하면 되나요?',`설치 장소 사진, 가용 공간 크기, 판매할 상품 목록, 희망 운영 시간과 ${site} 담당자 확인 사항을 준비하면 좋습니다.`]];
-// Markdown tables are supported by Eleventy and Decap's Markdown widget.
-// Avoid raw HTML in the editor: rich-text mode can flatten or truncate it.
-const table=(headers,rows)=>[ '| '+headers.join(' | ')+' |', '| '+headers.map(()=>'---').join(' | ')+' |', ...rows.map(row=>'| '+row.map(cell=>String(cell).replace(/\|/g,'/').replace(/\n/g,' ')).join(' | ')+' |') ].join('\n');
+const table=(headers,rows)=>`<div class="lk-post-table-wrap"><table class="lk-post-table"><thead><tr>${headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr>${row.map(cell=>`<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
 const placement=table(['설치 위치','운영 시 장점','사전 확인사항'],[
  [`${site} 휴게 공간`,'이용자가 머무는 시간에 접근하기 편리','통행 동선, 전원, 소음 및 관리 승인'],
  ['출입구 인근','방문객이 발견하기 쉬움','반입 경로, 안전 기준, 날씨 영향'],
@@ -95,8 +126,8 @@ const steps=`설치 전 확인 순서\n\n1. 설치 장소 사진과 반입 경�
 const related=`함께 확인하면 좋은 안내\n\n- [스마트 멀티자판기 제품 안내](/product-smart)\n- [냉동자판기 제품 안내](/product-frozen)\n- [전체 포스팅 보기](/posts/)`;
 return [opening,...sections.map(([h,t])=>`${h}\n\n${t}`),`${site} 자판기 설치 위치 비교\n\n${placement}`,`구매와 렌탈 조건 비교\n\n${costs}`,`설치 진행 순서\n\n${steps}`,`자주 묻는 질문`,...faq.map(([q,answer])=>`${q}\n\n${answer}`),related,`마무리\n\n${a} ${site}의 ${product} 도입은 판매 상품과 설치 환경을 먼저 확인하는 것에서 시작합니다. 실제 설치 가능 여부, 기종별 지원 기능과 계약 조건은 상담 시 확인해야 합니다. 이 글은 일반적인 설치 검토 정보이며 해당 지역의 실제 설치 실적을 의미하지 않습니다.`].join('\n\n');
 }
-function generate(){const v=data(),ts=candidates(v),previous=el('lk-title').value;opt(el('lk-title'),ts);if(titleTouched&&ts.includes(previous))el('lk-title').value=previous;const kws=keywords(v);el('lk-tags').replaceChildren(...kws.map(k=>{const s=document.createElement('span');s.textContent=k;return s}));el('lk-draft').value=draft(v).replace(/^#{1,6}\s*/gm,'');el('lk-count').textContent=el('lk-draft').value.length+'자'}
-function slug(v){const pm={서울:'seoul',부산:'busan',대구:'daegu',인천:'incheon',광주:'gwangju',대전:'daejeon',울산:'ulsan',세종:'sejong',경기:'gyeonggi',강원:'gangwon',충북:'chungbuk',충남:'chungnam',전북:'jeonbuk',전남:'jeonnam',경북:'gyeongbuk',경남:'gyeongnam',제주:'jeju'};const L=['g','kk','n','d','tt','r','m','b','pp','s','ss','','j','jj','ch','k','t','p','h'],V=['a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i'],T=['','k','k','ks','n','nj','nh','t','l','lk','lm','lb','ls','lt','lp','lh','m','p','ps','t','t','ng','t','t','k','t','p','h'];function roman(s){return [...s].map(c=>{const n=c.charCodeAt(0)-44032;if(n<0||n>11171)return /[a-zA-Z0-9]/.test(c)?c:'-';return L[Math.floor(n/588)]+V[Math.floor(n%588/28)]+T[n%28]}).join('').replace(/-+/g,'-').replace(/^-|-$/g,'').toLowerCase()}const product={냉동자판기:'frozen',무인자판기:'unmanned',멀티자판기:'multi',스마트자판기:'smart',무인판매기:'retail'};return [pm[v.province],roman(v.city),roman(v.district),product[v.product],roman(v.place)].filter(Boolean).join('-')}
+function generate(){const v=data(),ts=isInfo()?[el('lk-topic').value+' | LK Smart Vending']:candidates(v),previous=el('lk-title').value;opt(el('lk-title'),ts);if(titleTouched&&ts.includes(previous))el('lk-title').value=previous;const kws=isInfo()?[el('lk-topic').value,el('lk-category').value,v.product]:keywords(v);el('lk-tags').replaceChildren(...kws.map(k=>{const s=document.createElement('span');s.textContent=k;return s}));el('lk-draft').value=isInfo()?infoDraft(v):draft(v);el('lk-count').textContent=el('lk-draft').value.length+'자'}
+function slug(v){if(isInfo()){const topicIndex=(INFO_TOPICS[el('lk-category').value]||[]).indexOf(el('lk-topic').value)+1;const catIndex=Object.keys(INFO_TOPICS).indexOf(el('lk-category').value)+1;return `guide-${catIndex}-${topicIndex}-${v.product==='냉동자판기'?'frozen':'vending'}`;}const pm={서울:'seoul',부산:'busan',대구:'daegu',인천:'incheon',광주:'gwangju',대전:'daejeon',울산:'ulsan',세종:'sejong',경기:'gyeonggi',강원:'gangwon',충북:'chungbuk',충남:'chungnam',전북:'jeonbuk',전남:'jeonnam',경북:'gyeongbuk',경남:'gyeongnam',제주:'jeju'};const L=['g','kk','n','d','tt','r','m','b','pp','s','ss','','j','jj','ch','k','t','p','h'],V=['a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i'],T=['','k','k','ks','n','nj','nh','t','l','lk','lm','lb','ls','lt','lp','lh','m','p','ps','t','t','ng','t','t','k','t','p','h'];function roman(s){return [...s].map(c=>{const n=c.charCodeAt(0)-44032;if(n<0||n>11171)return /[a-zA-Z0-9]/.test(c)?c:'-';return L[Math.floor(n/588)]+V[Math.floor(n%588/28)]+T[n%28]}).join('').replace(/-+/g,'-').replace(/^-|-$/g,'').toLowerCase()}const product={냉동자판기:'frozen',무인자판기:'unmanned',멀티자판기:'multi',스마트자판기:'smart',무인판매기:'retail'};return [pm[v.province],roman(v.city),roman(v.district),product[v.product],roman(v.place)].filter(Boolean).join('-')}
 // Decap CMS 3 renders field wrappers differently across widgets and versions.
 // Locate the real editor control, never a control inside the helper.
 function fieldContainer(name,label){
@@ -119,6 +150,33 @@ function locate(name,label){
  const inner=direct.querySelector('input:not([type="hidden"]),textarea,select,[contenteditable="true"]');if(inner)return inner;}
  const c=fieldContainer(name,label);return c?.querySelector('input:not([type="hidden"]),textarea,select,[contenteditable="true"],[role="textbox"]')||null;
 }
+// The title widget is a Decap string field; its visible label is more reliable
+// than generic name lookups, which can match hidden React elements.
+function locateTitleInput(){
+ const candidates=[...document.querySelectorAll('input:not([type="hidden"]):not([type="checkbox"]),textarea')].filter(n=>!box.contains(n));
+ const exact=candidates.find(n=>n.getAttribute('name')==='title' || n.id==='title-field');
+ if(exact)return exact;
+ const wrapper=document.getElementById('title-field');
+ if(wrapper){const found=wrapper.querySelector('input,textarea');if(found&&!box.contains(found))return found;}
+ for(const n of [...document.querySelectorAll('label')].filter(n=>!box.contains(n))){
+  const labelText=(n.textContent||'').replace(/\s+/g,' ').trim();
+  if(!labelText.startsWith('포스팅 제목'))continue;
+  const id=n.getAttribute('for');if(id){const byId=document.getElementById(id);if(byId&&byId.matches('input,textarea'))return byId;}
+  for(let parent=n.parentElement,depth=0;parent&&depth<5;parent=parent.parentElement,depth++){
+   const inputs=[...parent.querySelectorAll('input:not([type="hidden"]),textarea')].filter(e=>!box.contains(e));
+   if(inputs.length===1)return inputs[0];
+  }
+ }
+ return null;
+}
+async function fillTitle(value){
+ const node=locateTitleInput();if(!node)return false;
+ node.focus();setInput(node,value);
+ await pause(180);
+ // A controlled CMS widget can revert its DOM value after React rerenders.
+ if(node.value!==value){setInput(node,value);await pause(180);}
+ return node.value===value;
+}
 function setInput(node,value){
  if(!node)return false;
  if(node.matches('input,textarea')){
@@ -135,47 +193,22 @@ function setInput(node,value){
  return false;
 }
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
-function bodyText(node){return String(node?.value??'').replace(/\r\n/g,'\n')}
-// Find the body editor by its own field identity; never use a different field's textarea.
-function bodyEditorRoot(){
- const explicit=[document.getElementById('body-field'),document.querySelector('[name="body"]'),document.querySelector('[data-testid="body-field"]')].find(n=>n&&!box.contains(n));
- if(explicit)return explicit.closest('[class*="ControlContainer"], [class*="FieldWrapper"], [class*="Widget"]')||explicit.parentElement||explicit;
- const labels=[...document.querySelectorAll('label,span,div')].filter(n=>!box.contains(n)&&n.children.length<3&&n.textContent.trim()==='본문');
- for(const label of labels){let n=label;for(let i=0;i<7&&n;i++,n=n.parentElement){if(n.querySelector('textarea,[data-slate-editor="true"],[contenteditable="true"],[role="textbox"]'))return n;}}
- return null;
-}
-function findBodySource(root){
- const candidates=[...root.querySelectorAll('textarea')].filter(n=>!box.contains(n)&&n.offsetParent!==null);
- return candidates.find(n=>n.closest('[class*="Markdown"],[class*="markdown"],[class*="Editor"],[class*="editor"]'))||candidates[0]||null;
+function markDownMode(){
+ const c=fieldContainer('body','본문');if(!c)return;
+ const switches=[...c.querySelectorAll('button,[role="switch"],input[type="checkbox"]')];
+ const toggle=switches.find(x=>/마크다운|markdown/i.test(x.textContent||x.getAttribute('aria-label')||''));
+ if(toggle)toggle.click();
 }
 async function fillBody(body){
- const wanted=String(body).replace(/\r\n/g,'\n');
- const root=bodyEditorRoot();if(!root)throw Error('본문 편집 영역을 찾지 못했습니다.');
- let source=findBodySource(root);
- // The Decap Markdown widget defaults to rich text. Switch to raw Markdown first.
- if(!source){
-  const buttons=[...root.querySelectorAll('button,[role="button"]')].filter(n=>!box.contains(n));
-  const raw=buttons.find(n=>/markdown|마크다운|원문|소스|source|raw|코드|code|편집 모드/i.test([n.textContent,n.title,n.getAttribute('aria-label'),n.getAttribute('data-testid')].join(' ')));
-  if(raw){raw.click();await pause(350);source=findBodySource(root);}
- }
- if(source){
-  source.focus();setInput(source,wanted);await pause(650);
-  if(bodyText(source)===wanted)return true;
- }
- // Slate rich-text fallback: use a real paste event so the editor's own state changes.
- const editable=[...root.querySelectorAll('[data-slate-editor="true"],[contenteditable="true"],[role="textbox"]')].find(n=>!box.contains(n)&&n.offsetParent!==null);
- if(editable){
-  editable.focus();
-  const selection=window.getSelection(),range=document.createRange();range.selectNodeContents(editable);selection.removeAllRanges();selection.addRange(range);
-  let pasted=false;
-  try{const transfer=new DataTransfer();transfer.setData('text/plain',wanted);const event=new ClipboardEvent('paste',{bubbles:true,cancelable:true,clipboardData:transfer});pasted=editable.dispatchEvent(event)===false;}catch(e){}
-  await pause(650);
-  source=findBodySource(root);
-  if(source&&bodyText(source)===wanted)return true;
-  // Slate text may be split across blocks, so do not claim success without matching.
-  if(pasted&&editable.innerText.replace(/\r\n/g,'\n').trim()===wanted.trim())return true;
- }
- throw Error('본문 자동 입력을 확인하지 못했습니다. CMS 본문 편집기의 마크다운 모드를 선택한 뒤 다시 눌러주세요.');
+ const c=fieldContainer('body','본문');if(!c)return false;
+ let node=locate('body','본문');
+ if(node?.matches('textarea'))return setInput(node,body);
+ // Decap markdown widget uses a rich-text editor by default. Switch to Markdown mode.
+ const buttons=[...c.querySelectorAll('button,[role="button"],label')];
+ const md=buttons.find(x=>/^(마크다운|Markdown)$/i.test(x.textContent.trim()));
+ if(md && !c.querySelector('textarea')){md.click();await pause(250)}
+ node=c.querySelector('textarea')||locate('body','본문');
+ return node?.matches('textarea')?setInput(node,body):false;
 }
 async function fillKeywords(values){
  const c=fieldContainer('keywords','연관 키워드');if(!c)return false;
@@ -203,26 +236,32 @@ async function fill(){
  const status=el('lk-status');const button=el('lk-fill');button.disabled=true;
  status.textContent='CMS 입력란을 확인하고 있습니다…';
  try{
- const v=data(),body=el('lk-draft').value.replace(/^#{1,6}\s*/gm,'');
- const description=`${v.area} ${v.place}에서 ${v.product} 설치와 렌탈을 검토할 때 필요한 상품 구성, 설치 환경, 계약 및 운영 관리 사항을 안내합니다.`;
- const fields=[['title','포스팅 제목',el('lk-title').value],['slug_id','URL ID',slug(v)],['description','검색결과 설명문',description],['province','시·도',v.province],['city','시·군·구',v.city],['district','읍·면·동',v.district],['product','제품 키워드',v.product],['place','설치 공간',v.place]];
- const ok=[],missing=[]; if(!locate('title','포스팅 제목')){status.textContent='CMS 입력칸을 찾지 못했습니다. 관리자 편집 화면이 열린 상태인지 확인하세요. 이 버전에서는 자동입력을 중단합니다.';status.style.color='#b42318';return;}
+ const v=data(),body=el('lk-draft').value;
+ const description=isInfo()?`${el('lk-topic').value}에 필요한 비용·설치·상품 구성·운영 관리의 핵심 점검사항을 안내합니다.`:`${v.area} ${v.place}에서 ${v.product} 설치와 렌탈을 검토할 때 필요한 상품 구성, 설치 환경, 계약 및 운영 관리 사항을 안내합니다.`;
+ const fields=[['category','포스팅 카테고리',isInfo()?el('lk-category').value:'지역별 설치 안내'],['title','포스팅 제목',el('lk-title').value],['slug_id','URL ID',slug(v)],['description','검색결과 설명문',description],['province','시·도',isInfo()?'':v.province],['city','시·군·구',isInfo()?'':v.city],['district','읍·면·동',isInfo()?'':v.district],['product','제품 키워드',v.product],['place','설치 공간',v.place]];
+ const ok=[],missing=[]; if(!locateTitleInput()){status.textContent='CMS 입력칸을 찾지 못했습니다. 관리자 편집 화면이 열린 상태인지 확인하세요. 이 버전에서는 자동입력을 중단합니다.';status.style.color='#b42318';return;}
  for(const [name,label,value] of fields){
-  if(name==='district'&&!value)continue;
+  if(isInfo()&&['province','city','district','place'].includes(name))continue; if(name==='district'&&!value)continue;
+  if(name==='title'){if(await fillTitle(value))ok.push(label);else missing.push(label+'(입력 실패)');continue;}
   const node=locate(name,label);
   if(setInput(node,value)){await pause(100);if(node&&('value' in node)&&String(node.value)!==String(value))missing.push(label+'(값 유지 실패)');else ok.push(label)}else missing.push(label);
   await pause(65);
  }
  if(await fillDate('date','발행일'))ok.push('발행일');else missing.push('발행일');
  if(await fillDate('updated','수정일'))ok.push('수정일');else missing.push('수정일');
- if(await fillKeywords(keywords(v)))ok.push('연관 키워드');else missing.push('연관 키워드');
- try{if(await fillBody(body))ok.push('본문(전체 일치 확인)');else missing.push('본문(전체 입력 실패)')}catch(error){missing.push('본문: '+error.message)}
+ if(await fillKeywords(isInfo()?[el('lk-topic').value,el('lk-category').value,v.product]:keywords(v)))ok.push('연관 키워드');else missing.push('연관 키워드');
+ if(await fillBody(body))ok.push('본문');else missing.push('본문');
+ const finalTitle=locateTitleInput();
+ if(!finalTitle||finalTitle.value!==el('lk-title').value){
+  if(await fillTitle(el('lk-title').value))ok.push('포스팅 제목 재확인');
+  else missing.push('포스팅 제목(최종 검증 실패)');
+ }
  // Optional image fields are never invented. Preserve existing images.
- status.textContent=`입력 및 검증 ${ok.length}개: ${ok.join(', ')}. ${missing.length?'수동 확인 필요: '+missing.join(', ')+'. ':''}대표 이미지·ALT는 기존 값을 유지하거나 직접 선택하세요. 저장 전 모든 필드와 본문을 반드시 확인하세요.`;
+ status.textContent=`입력 시도 ${ok.length}개: ${ok.join(', ')}. ${missing.length?'수동 확인 필요: '+missing.join(', ')+'. ':''}대표 이미지·ALT는 기존 값을 유지하거나 직접 선택하세요. 저장 전 모든 필드와 본문을 반드시 확인하세요.`;
  status.style.color=missing.length?'#a24a10':'#087b43';
  }catch(e){status.textContent='자동 입력 중 오류: '+e.message+' — 저장하지 말고 입력란을 확인하세요.';status.style.color='#a24a10'}
  finally{button.disabled=false}
 }
 for(const id of ['lk-province','lk-city','lk-district','lk-district-manual','lk-product','lk-place','lk-use','lk-type','lk-extra'])el(id).addEventListener(id==='lk-district-manual'||id==='lk-extra'?'input':'change',id==='lk-province'?cities:id==='lk-city'?districts:generate);
-el('lk-title').addEventListener('change',()=>titleTouched=true);el('lk-draft').addEventListener('input',()=>el('lk-count').textContent=el('lk-draft').value.length+'자');el('lk-fill').addEventListener('click',fill);el('lk-copy').addEventListener('click',()=>navigator.clipboard.writeText(el('lk-draft').value).then(()=>el('lk-status').textContent='본문을 복사했습니다.').catch(()=>el('lk-status').textContent='복사 권한을 확인해 주세요.'));el('lk-toggle').addEventListener('click',()=>{box.classList.toggle('lk-collapsed');el('lk-toggle').setAttribute('aria-expanded', !box.classList.contains('lk-collapsed'));});cities();
+el('lk-mode').addEventListener('change',()=>{el('lk-info-options').style.display=isInfo()?'block':'none';el('lk-regional-options').style.display=isInfo()?'none':'block';titleTouched=false;generate()});el('lk-category').addEventListener('change',()=>{titleTouched=false;updateTopics()});el('lk-topic').addEventListener('change',()=>{titleTouched=false;generate()});updateTopics();el('lk-title').addEventListener('change',()=>titleTouched=true);el('lk-draft').addEventListener('input',()=>el('lk-count').textContent=el('lk-draft').value.length+'자');el('lk-fill').addEventListener('click',fill);el('lk-copy').addEventListener('click',()=>navigator.clipboard.writeText(el('lk-draft').value).then(()=>el('lk-status').textContent='본문을 복사했습니다.').catch(()=>el('lk-status').textContent='복사 권한을 확인해 주세요.'));el('lk-toggle').addEventListener('click',()=>{box.classList.toggle('lk-collapsed');el('lk-toggle').setAttribute('aria-expanded', !box.classList.contains('lk-collapsed'));});cities();
 })();
