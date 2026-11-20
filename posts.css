@@ -393,3 +393,12 @@ article img,
     height:auto !important;
   }
 }
+
+/* LK 포스팅 자동작성기 공통 비교표: 신규 지역 포스팅 전체 적용 */
+.post-body .lk-post-table-wrap{max-width:100%;overflow-x:auto;margin:22px 0 32px;-webkit-overflow-scrolling:touch;border:1px solid #d9e5f2;border-radius:12px}
+.post-body .lk-post-table{width:100%;min-width:560px;border-collapse:collapse;font-size:15px;line-height:1.65;text-align:left}
+.post-body .lk-post-table th{background:#eaf3ff;color:#193b64;font-weight:800;padding:13px 15px;border-bottom:2px solid #c9dff5}
+.post-body .lk-post-table td{padding:13px 15px;border-bottom:1px solid #e5edf5;vertical-align:top}
+.post-body .lk-post-table tr:nth-child(even) td{background:#f8fbff}
+.post-body .lk-post-table tbody tr:last-child td{border-bottom:0}
+@media(max-width:650px){.post-body .lk-post-table{font-size:14px;min-width:520px}}
