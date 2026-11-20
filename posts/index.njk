@@ -33,12 +33,13 @@ layout: false
 <h1>무인자판기 설치·렌탈<br>정보 포스팅</h1>
 <span>지역별 설치 환경, 상품 구성, 운영 방법을 정보성 콘텐츠로 정리합니다.</span>
 </div>
+<div class="lk-filter-bar" style="display:flex;flex-wrap:wrap;gap:8px;margin:22px 0"><button type="button" data-category="all">전체</button><button type="button" data-category="지역별 설치 안내">지역별 설치 안내</button><button type="button" data-category="자판기 창업 정보">창업 정보</button><button type="button" data-category="구매·렌탈 비교">구매·렌탈</button><button type="button" data-category="자판기 운영 관리">운영 관리</button><button type="button" data-category="제품별 정보">제품 정보</button><button type="button" data-category="설치 준비 가이드">설치 가이드</button></div>
 <div class="posts-grid">
 {% for post in collections.publishedPosts %}
-<a class="post-card" href="{{ post.url }}">
+<a class="post-card" data-category="{{ post.data.category or '지역별 설치 안내' }}" href="{{ post.url }}">
   {% if post.data.featured_image %}<img src="{{ post.data.featured_image }}" alt="{{ post.data.image_alt or post.data.title }}">{% endif %}
   <div>
-    <p>{{ post.data.province }} {{ post.data.city }} {% if post.data.district %}{{ post.data.district }}{% endif %}</p>
+    <p>{{ post.data.category or "지역별 설치 안내" }}{% if post.data.province %} · {{ post.data.province }} {{ post.data.city }}{% endif %}{% if post.data.district %} {{ post.data.district }}{% endif %}</p>
     <h2>{{ post.data.title }}</h2>
     <span>{{ post.data.description }}</span>
     <small>{{ post.data.date | dateKo }} · {{ post.data.product or "무인자판기" }}</small>
@@ -53,5 +54,6 @@ layout: false
 </div>
 </main>
 <footer class="post-footer">© LK Smart Vending · {{ site.phone }}</footer>
+<script>document.querySelectorAll('.lk-filter-bar button').forEach(button=>button.addEventListener('click',()=>{const selected=button.dataset.category;document.querySelectorAll('.post-card[data-category]').forEach(card=>{card.style.display=selected==='all'||card.dataset.category===selected?'':'none'});document.querySelectorAll('.lk-filter-bar button').forEach(b=>b.setAttribute('aria-pressed',String(b===button)))}));</script>
 </body>
 </html>
