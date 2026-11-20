@@ -93,9 +93,9 @@ const costs=table(['비교 항목','구매','렌탈·대여'],[
  ['A/S','제조사·판매처의 보증 범위 확인','계약서의 관리 범위 확인']]);
 const steps=`설치 전 확인 순서\n\n1. 설치 장소 사진과 반입 경로를 확인합니다.\n2. 판매 상품의 크기와 보관 온도를 정합니다.\n3. 기기 사양과 결제·관리 방식을 비교합니다.\n4. 계약 조건과 설치 가능 여부를 담당자에게 확인합니다.`;
 const related=`함께 확인하면 좋은 안내\n\n- [스마트 멀티자판기 제품 안내](/product-smart)\n- [냉동자판기 제품 안내](/product-frozen)\n- [전체 포스팅 보기](/posts/)`;
-return [opening,...sections.map(([h,t])=>`## ${h}\n\n${t}`),`## ${site} 자판기 설치 위치 비교\n\n${placement}`,`## 구매와 렌탈 조건 비교\n\n${costs}`,`## 설치 진행 순서\n\n${steps}`,`## 자주 묻는 질문`,...faq.map(([q,answer])=>`### ${q}\n\n${answer}`),related,`## 마무리\n\n${a} ${site}의 ${product} 도입은 판매 상품과 설치 환경을 먼저 확인하는 것에서 시작합니다. 실제 설치 가능 여부, 기종별 지원 기능과 계약 조건은 상담 시 확인해야 합니다. 이 글은 일반적인 설치 검토 정보이며 해당 지역의 실제 설치 실적을 의미하지 않습니다.`].join('\n\n');
+return [opening,...sections.map(([h,t])=>`${h}\n\n${t}`),`${site} 자판기 설치 위치 비교\n\n${placement}`,`구매와 렌탈 조건 비교\n\n${costs}`,`설치 진행 순서\n\n${steps}`,`자주 묻는 질문`,...faq.map(([q,answer])=>`${q}\n\n${answer}`),related,`마무리\n\n${a} ${site}의 ${product} 도입은 판매 상품과 설치 환경을 먼저 확인하는 것에서 시작합니다. 실제 설치 가능 여부, 기종별 지원 기능과 계약 조건은 상담 시 확인해야 합니다. 이 글은 일반적인 설치 검토 정보이며 해당 지역의 실제 설치 실적을 의미하지 않습니다.`].join('\n\n');
 }
-function generate(){const v=data(),ts=candidates(v),previous=el('lk-title').value;opt(el('lk-title'),ts);if(titleTouched&&ts.includes(previous))el('lk-title').value=previous;const kws=keywords(v);el('lk-tags').replaceChildren(...kws.map(k=>{const s=document.createElement('span');s.textContent=k;return s}));el('lk-draft').value=draft(v);el('lk-count').textContent=el('lk-draft').value.length+'자'}
+function generate(){const v=data(),ts=candidates(v),previous=el('lk-title').value;opt(el('lk-title'),ts);if(titleTouched&&ts.includes(previous))el('lk-title').value=previous;const kws=keywords(v);el('lk-tags').replaceChildren(...kws.map(k=>{const s=document.createElement('span');s.textContent=k;return s}));el('lk-draft').value=draft(v).replace(/^#{1,6}\s*/gm,'');el('lk-count').textContent=el('lk-draft').value.length+'자'}
 function slug(v){const pm={서울:'seoul',부산:'busan',대구:'daegu',인천:'incheon',광주:'gwangju',대전:'daejeon',울산:'ulsan',세종:'sejong',경기:'gyeonggi',강원:'gangwon',충북:'chungbuk',충남:'chungnam',전북:'jeonbuk',전남:'jeonnam',경북:'gyeongbuk',경남:'gyeongnam',제주:'jeju'};const L=['g','kk','n','d','tt','r','m','b','pp','s','ss','','j','jj','ch','k','t','p','h'],V=['a','ae','ya','yae','eo','e','yeo','ye','o','wa','wae','oe','yo','u','wo','we','wi','yu','eu','ui','i'],T=['','k','k','ks','n','nj','nh','t','l','lk','lm','lb','ls','lt','lp','lh','m','p','ps','t','t','ng','t','t','k','t','p','h'];function roman(s){return [...s].map(c=>{const n=c.charCodeAt(0)-44032;if(n<0||n>11171)return /[a-zA-Z0-9]/.test(c)?c:'-';return L[Math.floor(n/588)]+V[Math.floor(n%588/28)]+T[n%28]}).join('').replace(/-+/g,'-').replace(/^-|-$/g,'').toLowerCase()}const product={냉동자판기:'frozen',무인자판기:'unmanned',멀티자판기:'multi',스마트자판기:'smart',무인판매기:'retail'};return [pm[v.province],roman(v.city),roman(v.district),product[v.product],roman(v.place)].filter(Boolean).join('-')}
 // Decap CMS 3 renders field wrappers differently across widgets and versions.
 // Locate the real editor control, never a control inside the helper.
@@ -136,23 +136,46 @@ function setInput(node,value){
 }
 const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 function bodyText(node){return String(node?.value??'').replace(/\r\n/g,'\n')}
+// Find the body editor by its own field identity; never use a different field's textarea.
+function bodyEditorRoot(){
+ const explicit=[document.getElementById('body-field'),document.querySelector('[name="body"]'),document.querySelector('[data-testid="body-field"]')].find(n=>n&&!box.contains(n));
+ if(explicit)return explicit.closest('[class*="ControlContainer"], [class*="FieldWrapper"], [class*="Widget"]')||explicit.parentElement||explicit;
+ const labels=[...document.querySelectorAll('label,span,div')].filter(n=>!box.contains(n)&&n.children.length<3&&n.textContent.trim()==='본문');
+ for(const label of labels){let n=label;for(let i=0;i<7&&n;i++,n=n.parentElement){if(n.querySelector('textarea,[data-slate-editor="true"],[contenteditable="true"],[role="textbox"]'))return n;}}
+ return null;
+}
+function findBodySource(root){
+ const candidates=[...root.querySelectorAll('textarea')].filter(n=>!box.contains(n)&&n.offsetParent!==null);
+ return candidates.find(n=>n.closest('[class*="Markdown"],[class*="markdown"],[class*="Editor"],[class*="editor"]'))||candidates[0]||null;
+}
 async function fillBody(body){
- const c=fieldContainer('body','본문');if(!c)return false;
- // A textarea inside the body widget is the Markdown source editor.
- // Never write to the rich-text contenteditable node: it loses line breaks and tables.
- let node=[...c.querySelectorAll('textarea')].find(n=>!box.contains(n));
- if(!node){
-  const buttons=[...c.querySelectorAll('button,[role="button"]')];
-  const md=buttons.find(x=>/^(마크다운|markdown)$/i.test((x.textContent||'').trim()) || /markdown/i.test(x.getAttribute('aria-label')||''));
-  if(md){md.click();await pause(450)}
-  node=[...c.querySelectorAll('textarea')].find(n=>!box.contains(n));
+ const wanted=String(body).replace(/\r\n/g,'\n');
+ const root=bodyEditorRoot();if(!root)throw Error('본문 편집 영역을 찾지 못했습니다.');
+ let source=findBodySource(root);
+ // The Decap Markdown widget defaults to rich text. Switch to raw Markdown first.
+ if(!source){
+  const buttons=[...root.querySelectorAll('button,[role="button"]')].filter(n=>!box.contains(n));
+  const raw=buttons.find(n=>/markdown|마크다운|원문|소스|source|raw|코드|code|편집 모드/i.test([n.textContent,n.title,n.getAttribute('aria-label'),n.getAttribute('data-testid')].join(' ')));
+  if(raw){raw.click();await pause(350);source=findBodySource(root);}
  }
- if(!node)return false;
- if(!setInput(node,body))return false;
- await pause(450);
- // Verify the actual editor value, not just whether input events were sent.
- if(bodyText(node)!==String(body).replace(/\r\n/g,'\n'))return false;
- return true;
+ if(source){
+  source.focus();setInput(source,wanted);await pause(650);
+  if(bodyText(source)===wanted)return true;
+ }
+ // Slate rich-text fallback: use a real paste event so the editor's own state changes.
+ const editable=[...root.querySelectorAll('[data-slate-editor="true"],[contenteditable="true"],[role="textbox"]')].find(n=>!box.contains(n)&&n.offsetParent!==null);
+ if(editable){
+  editable.focus();
+  const selection=window.getSelection(),range=document.createRange();range.selectNodeContents(editable);selection.removeAllRanges();selection.addRange(range);
+  let pasted=false;
+  try{const transfer=new DataTransfer();transfer.setData('text/plain',wanted);const event=new ClipboardEvent('paste',{bubbles:true,cancelable:true,clipboardData:transfer});pasted=editable.dispatchEvent(event)===false;}catch(e){}
+  await pause(650);
+  source=findBodySource(root);
+  if(source&&bodyText(source)===wanted)return true;
+  // Slate text may be split across blocks, so do not claim success without matching.
+  if(pasted&&editable.innerText.replace(/\r\n/g,'\n').trim()===wanted.trim())return true;
+ }
+ throw Error('본문 자동 입력을 확인하지 못했습니다. CMS 본문 편집기의 마크다운 모드를 선택한 뒤 다시 눌러주세요.');
 }
 async function fillKeywords(values){
  const c=fieldContainer('keywords','연관 키워드');if(!c)return false;
@@ -180,7 +203,7 @@ async function fill(){
  const status=el('lk-status');const button=el('lk-fill');button.disabled=true;
  status.textContent='CMS 입력란을 확인하고 있습니다…';
  try{
- const v=data(),body=el('lk-draft').value;
+ const v=data(),body=el('lk-draft').value.replace(/^#{1,6}\s*/gm,'');
  const description=`${v.area} ${v.place}에서 ${v.product} 설치와 렌탈을 검토할 때 필요한 상품 구성, 설치 환경, 계약 및 운영 관리 사항을 안내합니다.`;
  const fields=[['title','포스팅 제목',el('lk-title').value],['slug_id','URL ID',slug(v)],['description','검색결과 설명문',description],['province','시·도',v.province],['city','시·군·구',v.city],['district','읍·면·동',v.district],['product','제품 키워드',v.product],['place','설치 공간',v.place]];
  const ok=[],missing=[]; if(!locate('title','포스팅 제목')){status.textContent='CMS 입력칸을 찾지 못했습니다. 관리자 편집 화면이 열린 상태인지 확인하세요. 이 버전에서는 자동입력을 중단합니다.';status.style.color='#b42318';return;}
@@ -193,7 +216,7 @@ async function fill(){
  if(await fillDate('date','발행일'))ok.push('발행일');else missing.push('발행일');
  if(await fillDate('updated','수정일'))ok.push('수정일');else missing.push('수정일');
  if(await fillKeywords(keywords(v)))ok.push('연관 키워드');else missing.push('연관 키워드');
- if(await fillBody(body))ok.push('본문(전체 일치 확인)');else missing.push('본문(전체 입력 검증 실패: 저장 전 확인 필수)');
+ try{if(await fillBody(body))ok.push('본문(전체 일치 확인)');else missing.push('본문(전체 입력 실패)')}catch(error){missing.push('본문: '+error.message)}
  // Optional image fields are never invented. Preserve existing images.
  status.textContent=`입력 및 검증 ${ok.length}개: ${ok.join(', ')}. ${missing.length?'수동 확인 필요: '+missing.join(', ')+'. ':''}대표 이미지·ALT는 기존 값을 유지하거나 직접 선택하세요. 저장 전 모든 필드와 본문을 반드시 확인하세요.`;
  status.style.color=missing.length?'#a24a10':'#087b43';
